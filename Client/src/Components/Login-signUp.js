@@ -3,7 +3,7 @@ import '../Css/Home.css'
 import { FaFacebookSquare } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 
-class Home extends React.Component {
+class Login extends React.Component {
 
     
     handleClickLogIn = (event) => {
@@ -19,7 +19,7 @@ class Home extends React.Component {
     render() {
         return(
             <>
-                <h2>Welcome To Our WebSite</h2>
+                <h2>Welcome</h2>
                 <div className = "container" id="container">
                     <div className = "form-container sign-up-container">
                         <form action="#">
@@ -68,4 +68,4 @@ class Home extends React.Component {
         )
     }
 }
-export default Home;
+export default Login;
