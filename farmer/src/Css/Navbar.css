@@ -1,0 +1,94 @@
+.NavBar {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-top: 20px;
+    padding: 20px;  
+    background-color: burlywood;
+    border: 1px;
+    border-radius: 30px;
+}
+.Icons {
+    height: 35px;
+    width: 40px;
+    margin-top: 10px;
+    padding: 5px 0 5px 0;
+    border-radius: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.SearchBar {
+    display: flex;
+    flex-direction: row; 
+}
+.Search {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.Main {
+    margin-left: auto;
+    justify-content: space-between;
+}
+
+.MainIcons {
+    height: 35px;
+    width: 40px;
+    margin-top: 10px;
+    padding: 5px 0 5px 0;
+    border-radius: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.MainBody {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid blue;
+}
+.leftMenu {
+    flex-basis: 1;
+    float : left;
+    width: 300px;
+    background-color: #838282;
+    overflow-y : hidden;
+    border-radius: 30px;
+    margin-top: 5px;   
+}
+.leftMenu ul li {
+    padding : 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    list-style-type: none;
+    width: inherit;
+    border: 1px ;
+    margin-right: 20px;
+    border-radius: 25px;
+    background-color: rgb(185, 179, 187);
+}
+.leftMenu ul li a {
+    font-size: 20px;
+}
+.leftMenu ul li :hover {
+    margin-left: 20px;
+    color: white;
+    transition: .3s ease-out;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+.post {
+    border: 1px solid black;
+    margin: 20px;
+    flex-basis: 2;
+}
+.postBody {
+    padding : 5px;
+}
+.MainMenu {
+    width: 75%;
+    border: 1px solid red;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-auto-columns: auto;
+    grid-gap: 10px;
+}
