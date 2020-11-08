@@ -16,6 +16,7 @@
     border-radius: 15px;
     margin-right: 5px;
     margin-left: 5px;
+    color: white;
 }
 .SearchBar {
     display: flex;
@@ -43,7 +44,7 @@
 .MainBody {
     display: flex;
     flex-direction: row;
-    border: 2px solid blue;
+    
 }
 .leftMenu {
     flex-basis: 1;
@@ -70,10 +71,11 @@
 }
 .leftMenu ul li :hover {
     margin-left: 20px;
-    color: white;
+    color:#eb5b34;
     transition: .3s ease-out;
     white-space: nowrap;
     overflow-x: hidden;
+    text-decoration: none;
 }
 .post {
     border: 1px solid black;

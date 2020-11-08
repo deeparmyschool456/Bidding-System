@@ -8,8 +8,15 @@ var user = function(user) {
 
 user.create = function(new_user , result) {
     myConnection.query('INSERT INTO USERS SET ?' , new_user , (err , res) => {
-        if(err) console.log(err);
-        else console.log('Inserted Succesfully');
+        if(err){ 
+            console.log(err);
+            result(err,null);
+        }    
+        else 
+        {
+            console.log('Inserted Succesfully');
+            result(null,res);
+        }    
     })
 }
 user.login = function(email , password , result) {

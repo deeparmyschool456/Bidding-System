@@ -4,6 +4,11 @@ import './App.css';
 import Login from './Components/Login-signUp';
 import Home from './Components/Home';
 import axios from 'axios';
+import MainHome from './Components/not-logged-in';
+import Footer from './Components/Footer';
+
+
+
 class App extends React.Component {
 
   state = {username : '' , email : '' , password : '' , logedIn : false};
@@ -50,10 +55,14 @@ class App extends React.Component {
       return(
         <>
           <BrowserRouter>
-            <Route path = '/' render = {(props) => <Login {...props} 
+            
+            <Route exact path='/' component={MainHome} />
+          
+            <Route path = '/login' render = {(props) => <Login {...props} 
             logedIn = {this.state.logedIn} 
             changeState = {this.changeState}
             />} />
+      
           </BrowserRouter>
         </>
       )
@@ -63,6 +72,8 @@ class App extends React.Component {
           <BrowserRouter>
             <Route path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>
             {/* <Route path = "/newBid" component = {}> */}
+            
+            <Route path="/" component={Footer}/>
           </BrowserRouter>
         </>
       )
