@@ -3,6 +3,8 @@ import '../Css/Home.css'
 import { FaFacebookSquare } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import axios from 'axios';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { ToastProvider, useToasts } from 'react-toast-notifications'
 
 class Login extends React.Component {
 
@@ -19,12 +21,18 @@ class Login extends React.Component {
         container.classList.add("right-panel-active");
     }
     handleLoginSubmit = (event) => {
+        
         event.preventDefault(); 
         // this.props.changeState(this.state.username , this.state.email , this.state.password);
         const email = this.state.email;
 
         if(this.state.email.length === 0 || this.state.password.length === 0) {
-            alert('Feild Can \'t be Empty ');
+            //alert('Feild Can \'t be Empty ');
+            //NotificationManager.success('Message', 'ABC');
+            //addToast("Fields cant be empty", { appearance: 'error' })
+            NotificationManager.info("Fields can't be empty");
+            
+            
         } else {
             const data = {
                 email : this.state.email , 
@@ -38,7 +46,7 @@ class Login extends React.Component {
                     this.props.changeState(this.state.username , this.state.email , this.state.password);
                     this.props.history.push('/');
                 } else {
-                    alert('Wrong Credentials');
+                    NotificationManager.info('Wrong Credentials');
                 }
             })
         }
@@ -54,14 +62,19 @@ class Login extends React.Component {
         };
         axios.post(url , data).then(res => {
             console.log(res);
-            if(res.data !== 0) alert('User Already There');
+            if(res.data.errno) 
+                NotificationManager.error("Email/Username already there");    
+            
             else {
-                alert('Succesfull SignUp');
+                
+                NotificationManager.info("Successful Signup.Now Login");    
                 const container = document.getElementById('container');
                 container.classList.add("right-panel-active");
             }
         }).catch(err => {
-            alert('Unexpected error Occured ... Please Try Again');
+            console.log("Error:",err);
+            NotificationManager.info("Unexpected Error occured.Please Try Again");
+            
         })
     }
     handleChange = (event) => {
@@ -71,11 +84,13 @@ class Login extends React.Component {
     }
     render() {
         return(
-            <div className = "Body">
-                <h2>Welcome To Our WebSite</h2>
-                <div className = "container" id="container">
-                    <div className = "form-container sign-up-container">
-                        <form>
+            
+            <div style={{marginTop:"69px"}} >
+                
+                <div className = "container" id="container" >
+                
+                    <div className = "form-container sign-up-container" style={{backgroundColor:"white" }}>
+                        <form onSubmit = {this.handleSignupSubmit}>
                             <h1>Create Account</h1>
                             <div className = "social-container">
                                 <a href="#" className="social"><FaFacebookSquare/></a>
@@ -85,7 +100,8 @@ class Login extends React.Component {
                             <input type="text" placeholder="Name" name = "username" onChange = {this.handleChange} autoComplete = "off"/>
                             <input type="email" placeholder="Email" name = "email" onChange = {this.handleChange} autoComplete = "off"/>
                             <input type="password" placeholder="Password" name = "password" onChange = {this.handleChange} autoComplete = "off"/>
-                            <button onClick = {this.handleSignupSubmit}>Sign Up</button>
+                            <button type="submit" >Sign Up</button>
+                            <NotificationContainer/>
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
@@ -99,7 +115,8 @@ class Login extends React.Component {
                             <input type="email" placeholder="Email" name = "email" onChange = {this.handleChange} autoComplete = "off"/>
                             <input type="password" placeholder="Password" name = "password" onChange = {this.handleChange} autoComplete = "off"/>
                             <a href="#">Forgot your password?</a>
-                            <button onClick = {this.handleLoginSubmit}>Log In</button>
+                            <button type="submit">Log In</button>
+                            <NotificationContainer/>
                         </form>
                     </div>
                     <div className="overlay-container">
@@ -116,8 +133,11 @@ class Login extends React.Component {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
             </div>
+            
         )
     }
 }

@@ -7,7 +7,11 @@ exports.create = function(req , res) {
     const new_user = new user(req.body);
     user.create(new_user , (err , user) => {
         if(err) res.send(err);
-        else res.json(user);
+        else 
+        {
+            console.log(user);
+            res.json(user);
+        }
     })
 }
 exports.gettoken = function(req , res){

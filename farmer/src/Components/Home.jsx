@@ -32,27 +32,27 @@ class Home extends React.Component {
         ) : (<div> Loading !!!</div>);
         return (
             <div>
-                <h1 style = {{textAlign : "center"}}> Open Bidding System </h1>
-                <div className = "NavBar">
+                <h1 style = {{textAlign : "center",color:"#eb5b34"}}> AgroMart - Open Bidding System Platform </h1>
+                <div className = "NavBar" style={{backgroundColor:"#fa6461"}}>
                     <div className = "SearchBar">
-                            <DiYii className = "Icons" style = {{cursor : "pointer"}} title = "Open Bidding System"/>
-                            <input type = "text" className = "Search" placeholder = "Search Here"/>
+                            <DiYii className = "Icons" style = {{cursor : "pointer",color:"white"}} title = "Open Bidding System"/>
+                            <input type = "text" className = "Search" style={{color:"black"}} placeholder = "Search Here"/>
                     </div>
-                    <div className = "Main">
+                    <div className = "Main" style = {{cursor : "pointer",color:"white"}}>
                         <AiFillHome className = "MainIcons" title = "Home"/>
                         <IoMdContacts className = "MainIcons" title = "About" />
                         <GiCaptainHatProfile className = "MainIcons" title = "Profile" onClick = {this.props.logout}/>
                     </div>
                 </div>
                 <div className = "MainBody">
-                    <div className = "leftMenu">
+                    <div className = "leftMenu" style={{backgroundColor:"#fa6461"}}> 
                         <ul>
-                            <li><Link to = {'/newBid'}>New Bid</Link></li>
-                            <li><Link to = {'/myBids'}>Your Bids</Link></li>
-                            <li><Link to = {'/allBid'}>Buy Items</Link></li>
+                            <li style={{backgroundColor:"white"}}><Link to = {'/newBid'}>New Bid</Link></li>
+                            <li style={{backgroundColor:"white"}}><Link to = {'/myBids'}>Your Bids</Link></li>
+                            <li style={{backgroundColor:"white"}}><Link to = {'/allBid'}>Buy Items</Link></li>
                         </ul>
                     </div>
-                    <div className = "MainMenu">
+                    <div className = "MainMenu" style={{color:"white",fontWeight:"600",backgroundColor:"white"}}>
                         {bidList}
                     </div>
                 </div>
