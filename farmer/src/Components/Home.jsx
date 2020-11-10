@@ -11,7 +11,10 @@ import Img from '../Image/crop-card.webp'
 
 class Home extends React.Component { 
     
-    state = { bids : [] }
+    state = { 
+        bids : [],
+        current:1
+    }
     componentDidMount = () => {
         const url = 'http://localhost:8000/post/getallbid';
             
@@ -22,25 +25,42 @@ class Home extends React.Component {
             }); 
         })
     }
+    change=(event)=>{
+        this.setState({
+            current:event.target.value
+        })
+    }
 
     render() {
         const { bids } = this.state;
         const bidList = bids.length ? (
             bids.map(bid => {
-                return(
-                     
-                        <div className="card" key = {bid.ID} style={{width: "18rem",height:"400px",margin:"20px"}}>
-                            <img className="card-img-top" src={Img} height="180px"></img>
-                            <div className="card-body text-center">
-                                <h5 className="card-title" style={{marginTop:"-15px"}}><b>{bid.crop}</b></h5>
-                                <p className="card-text"><b>Status of Crop:</b> {bid.comments}</p>
-                                <p style={{marginTop:"-20px"}}><b>Current Bid:</b> {bid.baseprice} per kg</p>
-                                <a href="#" className="btn btn-primary text-center ">Place Your Bid</a>
-                            
-                            </div>
-                          </div>  
-                    
-                )
+
+                if(this.state.current==1)
+                {
+                    return(
+                        
+                            <div className="card" key = {bid.ID} style={{width: "18rem",height:"400px",margin:"20px"}}>
+                                <img className="card-img-top" src={Img} height="180px"></img>
+                                <div className="card-body text-center">
+                                    <h5 className="card-title" style={{marginTop:"-15px"}}><b>{bid.crop}</b></h5>
+                                    <p className="card-text"><b>Status of Crop:</b> {bid.comments}</p>
+                                    <p style={{marginTop:"-20px"}}><b>Current Bid:</b> {bid.baseprice} per kg</p>
+                                    <a href="#" className="btn btn-primary text-center ">Place Your Bid</a>
+                                
+                                </div>
+                            </div>  
+                        
+                    )
+                }
+                else if(this.state.current==2)
+                {
+
+                } 
+                else
+                {
+
+                }   
             })
         ) : (<div> Loading !!!</div>);
         return (
@@ -52,7 +72,7 @@ class Home extends React.Component {
                             <input type = "text" className = "Search" style = {{color : "black"}} placeholder = "Search Here"/>
                     </div>
                     <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
-                        <AiFillHome className = "MainIcons" title = "Home"/>
+                        <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
                         <IoMdContacts className = "MainIcons" title = "About" />
                         <GiCaptainHatProfile className = "MainIcons" title = "Profile" onClick = {this.props.logout}/>
                     </div>
@@ -61,9 +81,8 @@ class Home extends React.Component {
                     <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
-                            <li style={{backgroundColor:"white" , marginLeft : "10px"}}><Link to = {'/myBids'}>Status of Your Crops</Link></li>
-                            <li style={{backgroundColor:"white" , marginLeft : "10px"}}><Link to = {'/allBid'}>Status of Your Bids</Link></li>
-                            
+                            <li value="2" style={{backgroundColor:"white" , marginLeft : "10px"}} onClick={this.change}><Link>Status of Your Crops</Link></li>
+                            <li value="3" style={{backgroundColor:"white" , marginLeft : "10px"}} onClick={this.change}><Link>Status of Your Bids</Link></li>
                         </ul>
                     </div>
                     <div className="MainMenu" style={{background:"transparent"}}>
