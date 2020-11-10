@@ -49,13 +49,13 @@ class NewBid extends React.Component {
                 <div className = "myForm">
                     <form className = "Form">
                         <label>
-                        Crop Type : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
+                        Crop Name : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
                         </label>
                         <label>
-                        BasePrice : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    
+                        BasePrice( per kg ) : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    
                         </label>
                         <label>
-                        Any Comments : <input type = "text" name = "comments" onChange = {this.handleChange}/>
+                        Status of Crop : <input type = "text" name = "comments" onChange = {this.handleChange}/>
                         </label>
                         <button type = "submit" onClick = {this.handleSubmit}> Make a Bid </button>
                     </form>
