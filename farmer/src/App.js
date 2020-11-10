@@ -6,7 +6,7 @@ import Home from './Components/Home';
 import axios from 'axios';
 import MainHome from './Components/not-logged-in';
 import Footer from './Components/Footer';
-
+import NewBid from './Components/NewBid';
 
 
 class App extends React.Component {
@@ -15,6 +15,7 @@ class App extends React.Component {
   
   changeState = (usernam , email , password) => {
     this.setState({username : usernam , email : email , password : password , logedIn : true});
+    // console.log(this.state);
   }
   logout = () => {
     console.log('Hello World');
@@ -24,28 +25,24 @@ class App extends React.Component {
   componentDidMount() {
 
     const token = localStorage.getItem('cool-jwt');
-    console.log(token);
+    // console.log(token);
     if(!token) {
       this.setState({
-        username : null ,
         logedIn : false
       });
     } else {
       const url = 'http://localhost:8000/post/getuser';
       axios.get(url , {headers : {authorization : 'Bearer ' + token}})
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         this.setState({
-          logedIn : true , 
-          username : res.data.id , 
-          email : res.data.email
+          logedIn : true
         });
       })
       .catch(err => {
         localStorage.removeItem('cool-jwt');
         this.setState({
-          logedIn : false , 
-          username : null
+          logedIn : false
         });
       })
     }
@@ -55,14 +52,11 @@ class App extends React.Component {
       return(
         <>
           <BrowserRouter>
-            
-            <Route exact path='/' component={MainHome} />
-          
+            <Route exact path = '/' component = {MainHome} />
             <Route path = '/login' render = {(props) => <Login {...props} 
             logedIn = {this.state.logedIn} 
             changeState = {this.changeState}
             />} />
-      
           </BrowserRouter>
         </>
       )
@@ -70,11 +64,10 @@ class App extends React.Component {
       return(
         <>  
           <BrowserRouter>
-            <Route path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>
-            {/* <Route path = "/newBid" component = {}> */}
-            
-            <Route path="/" component={Footer}/>
+            <Route exact path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>
+            <Route exact path = "/newBid" render = {(props) => <NewBid {...props} email = {this.state.email}/>}/>
           </BrowserRouter>
+          <Footer />
         </>
       )
     }

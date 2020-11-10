@@ -3,10 +3,13 @@
     flex-direction: row;
     padding: 10px;
     margin-top: 20px;
-    padding: 20px;  
-    background-color: burlywood;
+    padding: 20px; 
     border: 1px;
     border-radius: 30px;
+    background-color: #f7f7f7;
+    opacity: 0.8;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .Icons {
     height: 35px;
@@ -16,11 +19,13 @@
     border-radius: 15px;
     margin-right: 5px;
     margin-left: 5px;
-    color: white;
+    color: black;
+    cursor: pointer;
 }
 .SearchBar {
     display: flex;
     flex-direction: row; 
+    
 }
 .Search {
     border: 1px solid grey;
@@ -49,11 +54,12 @@
 .leftMenu {
     flex-basis: 1;
     float : left;
-    width: 300px;
+    width: 20%;
     background-color: #838282;
     overflow-y : hidden;
     border-radius: 30px;
-    margin-top: 5px;   
+    margin-top: 5px;  
+    margin-left: 10px; 
 }
 .leftMenu ul li {
     padding : 10px;
@@ -84,13 +90,17 @@
 }
 .postBody {
     padding : 5px;
+    color: black;
 }
 .MainMenu {
-    width: 75%;
-    border: 1px solid red;
+    margin-left: 10px;
+    width: 80%;
+    justify-self: inherit;
+    border-radius: 30px;
     margin: 5px;
     display: grid;
     grid-template-columns: auto auto auto;
     grid-auto-columns: auto;
     grid-gap: 10px;
+    background-color:white;
 }

@@ -165,3 +165,6 @@ footer{
     margin: 5px 0;
   }
 }
+.content div {
+  align-self: center;
+}

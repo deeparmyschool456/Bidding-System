@@ -1,0 +1,23 @@
+h4 {
+    border: 1px solid blue;
+    margin: 30px;
+}
+.myForm {
+    border : 2px solid black;
+    margin: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+}
+.Form {
+    border: 1px solid red;
+    padding: 20px;
+}
+label {
+    color: black;
+    font-weight: bold;
+    font-size: inherit;
+}
+input {
+    border: 1px solid black;
+}

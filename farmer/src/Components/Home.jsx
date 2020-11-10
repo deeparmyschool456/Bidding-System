@@ -5,7 +5,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { IoMdContacts } from 'react-icons/io';
 import { GiCaptainHatProfile } from 'react-icons/gi';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class Home extends React.Component { 
@@ -32,27 +32,27 @@ class Home extends React.Component {
         ) : (<div> Loading !!!</div>);
         return (
             <div>
-                <h1 style = {{textAlign : "center",color:"#eb5b34"}}> AgroMart - Open Bidding System Platform </h1>
-                <div className = "NavBar" style={{backgroundColor:"#fa6461"}}>
+                <h1 style = {{textAlign : "center"}}> AgroMart - Open Bidding System Platform </h1>
+                <div className = "NavBar">
                     <div className = "SearchBar">
-                            <DiYii className = "Icons" style = {{cursor : "pointer",color:"white"}} title = "Open Bidding System"/>
-                            <input type = "text" className = "Search" style={{color:"black"}} placeholder = "Search Here"/>
+                            <DiYii className = "Icons" title = "Open Bidding System"/>
+                            <input type = "text" className = "Search" style = {{color : "black"}} placeholder = "Search Here"/>
                     </div>
-                    <div className = "Main" style = {{cursor : "pointer",color:"white"}}>
+                    <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
                         <AiFillHome className = "MainIcons" title = "Home"/>
                         <IoMdContacts className = "MainIcons" title = "About" />
                         <GiCaptainHatProfile className = "MainIcons" title = "Profile" onClick = {this.props.logout}/>
                     </div>
                 </div>
                 <div className = "MainBody">
-                    <div className = "leftMenu" style={{backgroundColor:"#fa6461"}}> 
+                    <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
-                            <li style={{backgroundColor:"white"}}><Link to = {'/newBid'}>New Bid</Link></li>
-                            <li style={{backgroundColor:"white"}}><Link to = {'/myBids'}>Your Bids</Link></li>
-                            <li style={{backgroundColor:"white"}}><Link to = {'/allBid'}>Buy Items</Link></li>
+                            <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>New Bid</Link></li>
+                            <li style={{backgroundColor:"white" , marginLeft : "10px"}}><Link to = {'/myBids'}>Your Bids</Link></li>
+                            <li style={{backgroundColor:"white" , marginLeft : "10px"}}><Link to = {'/allBid'}>Buy Items</Link></li>
                         </ul>
                     </div>
-                    <div className = "MainMenu" style={{color:"white",fontWeight:"600",backgroundColor:"white"}}>
+                    <div className = "MainMenu">
                         {bidList}
                     </div>
                 </div>
