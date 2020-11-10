@@ -13,7 +13,7 @@ class Home extends React.Component {
     
     state = { 
         bids : [],
-        current:1
+        
     }
     componentDidMount = () => {
         const url = 'http://localhost:8000/post/getallbid';
@@ -26,19 +26,37 @@ class Home extends React.Component {
         })
     }
     change=(event)=>{
-        this.setState({
-            current:event.target.value
-        })
+        console.log("Heeeee");
+        console.log(event.target);
+
+        if(event.target.value==1)
+        {
+            const data={
+                email : this.props.email
+            }
+            console.log(data);
+            const url = 'http://localhost:8000/post/getmycrop';
+            
+            axios.post(url,data).then(res => {
+                console.log(res.data);
+                this.setState({
+                bids : res.data
+                }); 
+            })
+            
+        }
+        else if(event.target.value==2)
+        {
+            
+        }
+
     }
 
     render() {
         const { bids } = this.state;
         const bidList = bids.length ? (
             bids.map(bid => {
-
-                if(this.state.current==1)
-                {
-                    return(
+                return(
                         
                             <div className="card" key = {bid.ID} style={{width: "18rem",height:"400px",margin:"20px"}}>
                                 <img className="card-img-top" src={Img} height="180px"></img>
@@ -53,16 +71,9 @@ class Home extends React.Component {
                         
                     )
                 }
-                else if(this.state.current==2)
-                {
-
-                } 
-                else
-                {
-
-                }   
-            })
-        ) : (<div> Loading !!!</div>);
+                   
+            
+        )) : (<div> Loading !!!</div>);
         return (
             <div>
                 <h1 style = {{textAlign : "center"}}> AgroMart - Open Bidding System Platform </h1>
@@ -81,8 +92,8 @@ class Home extends React.Component {
                     <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
-                            <li value="2" style={{backgroundColor:"white" , marginLeft : "10px"}} onClick={this.change}><Link>Status of Your Crops</Link></li>
-                            <li value="3" style={{backgroundColor:"white" , marginLeft : "10px"}} onClick={this.change}><Link>Status of Your Bids</Link></li>
+                            <a><li value="1" style={{backgroundColor:"white" , marginLeft : "10px",fontSize:"20px"}} onClick={this.change}>Status of Your Crops</li></a>
+                            <a><li value="2" style={{backgroundColor:"white" , marginLeft : "10px",fontSize:"20px"}} onClick={this.change}>Status of Your Bids</li></a>
                         </ul>
                     </div>
                     <div className="MainMenu" style={{background:"transparent"}}>
