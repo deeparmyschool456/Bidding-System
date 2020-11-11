@@ -25,27 +25,25 @@ class Home extends React.Component {
             }); 
         })
     }
-    change=(event)=>{
-        console.log("Heeeee");
-        console.log(event.target);
-
-        if(event.target.value==1)
+    change = (event) => {
+        
+        if(event.target.value === 1)
         {
-            const data={
+            const data = {
                 email : this.props.email
             }
             console.log(data);
             const url = 'http://localhost:8000/post/getmycrop';
             
-            axios.post(url,data).then(res => {
-                console.log(res.data);
+            axios.post(url , data).then(res => {
+                // console.log(res.data);
                 this.setState({
                 bids : res.data
                 }); 
             })
             
         }
-        else if(event.target.value==2)
+        else if(event.target.value === 2)
         {
             
         }
@@ -53,47 +51,42 @@ class Home extends React.Component {
     }
 
     render() {
+
+        const buttonLi = {backgroundColor:"white" , marginLeft : "10px", fontSize:"20px" , cursor : "pointer"};
         const { bids } = this.state;
         const bidList = bids.length ? (
             bids.map(bid => {
                 return(
                         
-                            <div className="card" key = {bid.ID} style={{width: "18rem",height:"400px",margin:"20px"}}>
-                                <img className="card-img-top" src={Img} height="180px"></img>
-                                <div className="card-body text-center">
-                                    <h5 className="card-title" style={{marginTop:"-15px"}}><b>{bid.crop}</b></h5>
-                                    <p className="card-text"><b>Status of Crop:</b> {bid.comments}</p>
-                                    <p style={{marginTop:"-20px"}}><b>Current Bid:</b> {bid.baseprice} per kg</p>
-                                    <a href="#" className="btn btn-primary text-center ">Place Your Bid</a>
-                                
+                            <div className="card" key = {bid.ID} style = {{width: "18rem", height:"400px" , margin:"20px"}}>
+                                <img className = "card-img-top" src = {Img} height="180px"></img>
+                                <div className = "card-body text-center">
+                                    <h5 className = "card-title" style = {{marginTop:"-15px"}}><b> {bid.crop} </b></h5>
+                                    <p style = {{marginTop : "-10px" , fontWeight : "bold"}}> from : {bid.city} </p>
+                                    <p className = "card-text" style = {{marginTop : "-10px"}}><b>Status of Crop :</b> {bid.comments}</p>
+                                    <p style = {{marginTop:"-20px"}}><b>BasePrice : </b> {bid.baseprice} per Kg</p>
+                                    <p style = {{marginTop : "-20px"}}><b>CurrentBid : </b>{bid.current_bid} per Kg</p>
+                                    <Link to = {'/' + bid.ID} className = "btn btn-primary text-center" style = {{marginTop : "-20px"}}> Place Your Bid </Link>
                                 </div>
                             </div>  
-                        
                     )
-                }
-                   
-            
-        )) : (<div> Loading !!!</div>);
+                }  
+        )) 
+        : 
+        (<div style = {{border : "1px solid black" , width : "200%"}}>
+            <h3 style = {{textAlign : "center"}}>No Bids To show !!</h3>
+            <Link to = {'/newbid'}>
+                <button style = {{height : "90px" , width : "200px" , marginLeft : "40%" , marginTop : "20px" , borderRadius : "50px"}}>Create a bid</button>
+            </Link>
+        </div>);
         return (
             <div>
-                <h1 style = {{textAlign : "center"}}> AgroMart - Open Bidding System Platform </h1>
-                <div className = "NavBar">
-                    <div className = "SearchBar">
-                            <DiYii className = "Icons" title = "Open Bidding System"/>
-                            <input type = "text" className = "Search" style = {{color : "black"}} placeholder = "Search Here"/>
-                    </div>
-                    <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
-                        <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
-                        <IoMdContacts className = "MainIcons" title = "About" />
-                        <GiCaptainHatProfile className = "MainIcons" title = "Profile" onClick = {this.props.logout}/>
-                    </div>
-                </div>
                 <div className = "MainBody">
                     <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
-                            <a><li value="1" style={{backgroundColor:"white" , marginLeft : "10px",fontSize:"20px"}} onClick={this.change}>Status of Your Crops</li></a>
-                            <a><li value="2" style={{backgroundColor:"white" , marginLeft : "10px",fontSize:"20px"}} onClick={this.change}>Status of Your Bids</li></a>
+                            <a><li value="1" style = {buttonLi} onClick={this.change}>Status of Your Crops</li></a>
+                            <a><li value="2" style = {buttonLi} onClick={this.change}>Status of Your Bids</li></a>
                         </ul>
                     </div>
                     <div className="MainMenu" style={{background:"transparent"}}>

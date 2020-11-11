@@ -7,7 +7,8 @@ import axios from 'axios';
 import MainHome from './Components/not-logged-in';
 import Footer from './Components/Footer';
 import NewBid from './Components/NewBid';
-
+import Bid from './Components/Bid';
+import NavBar from './Components/NavBar';
 
 class App extends React.Component {
 
@@ -18,7 +19,7 @@ class App extends React.Component {
     // console.log(this.state);
   }
   logout = () => {
-    console.log('Hello World');
+    // console.log('Hello World');
     localStorage.removeItem('cool-jwt');
     this.setState({logedIn : false , username : null , email : null});
   }
@@ -34,7 +35,7 @@ class App extends React.Component {
       const url = 'http://localhost:8000/post/getuser';
       axios.get(url , {headers : {authorization : 'Bearer ' + token}})
       .then(res => {
-        //console.log('Hello',res.data);
+        console.log(res);
         this.setState({
           email : res.data,
           logedIn : true
@@ -65,8 +66,10 @@ class App extends React.Component {
       return(
         <>  
           <BrowserRouter>
+            <Route path = '/' render = {(props) => <NavBar {...props} email = {this.state.email} logout = {this.logout}/>}/>
             <Route exact path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>
             <Route exact path = "/newBid" render = {(props) => <NewBid {...props} email = {this.state.email}/>}/>
+            <Route exact path = "/:bid_id" render = {(props) => <Bid {...props} email = {this.state.email}/>}/>
           </BrowserRouter>
           <Footer />
         </>

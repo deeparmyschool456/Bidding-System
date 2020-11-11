@@ -12,7 +12,8 @@ class NewBid extends React.Component {
     state = {
         crop : '' ,
         basePrice : 0.0 ,
-        comments : ''
+        comments : '',
+        city : ''
     }
 
     handleChange = (e) => {
@@ -20,11 +21,13 @@ class NewBid extends React.Component {
             [e.target.name] : e.target.value
         });
     }
-
+    componentDidMount() {
+        console.log(this.props.email , 'heeeeee');
+    }
     handleSubmit = (e) => {
 
         e.preventDefault();
-        const {crop , basePrice , comments} = this.state;
+        const {crop , basePrice , comments , city} = this.state;
         if(crop.length === 0 || basePrice === 0) {
             alert('Fields Are Empty');
         }
@@ -34,8 +37,10 @@ class NewBid extends React.Component {
                 crop : crop ,
                 baseprice : basePrice ,
                 comments : comments ,
-                email : this.props.email
+                email : this.props.email ,
+                city : city
             };
+            // console.log(data);
             axios.post(url , data)
             .then(res => {
                 alert('Added Succesfully!');
@@ -50,18 +55,6 @@ class NewBid extends React.Component {
     render() {
         return(
             <div>
-                <h1 style = {{textAlign : "center"}}> AgroMart - Open Bidding System Platform </h1>
-                <div className = "NavBar">
-                    <div className = "SearchBar">
-                            <DiYii className = "Icons" title = "Open Bidding System"/>
-                            <input type = "text" className = "Search" style = {{color : "black"}} placeholder = "Search Here"/>
-                    </div>
-                    <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
-                        <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
-                        <IoMdContacts className = "MainIcons" title = "About" />
-                        <GiCaptainHatProfile className = "MainIcons" title = "Profile" onClick = {this.props.logout}/>
-                    </div>
-                </div>
                 <div className = "MainBody">
                     <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
@@ -79,6 +72,9 @@ class NewBid extends React.Component {
                     <form style={{border:"0px"}} className = "Form">
                         <label>
                         Crop Name : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
+                        </label>
+                        <label>
+                        City : <input type = "text" placeholder = "City / town" name = "city"  onChange = {this.handleChange} autoComplete = "off"/>
                         </label>
                         <label>
                         BasePrice( per kg ) : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    

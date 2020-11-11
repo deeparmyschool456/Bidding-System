@@ -9,5 +9,7 @@ Router.get('/getuser' , user_controller.getuser);
 Router.post('/newbid' , bid_controller.insertBid);
 Router.get('/getallbid',bid_controller.getAllBid);
 Router.post('/getmycrop',bid_controller.getMyCrop);
+Router.post('/getprice' , bid_controller.getPrice);
+Router.post('/placebid' , bid_controller.placeBid);
 
 module.exports = Router;

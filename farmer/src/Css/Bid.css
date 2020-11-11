@@ -1,0 +1,22 @@
+.MainBody1 {
+    border : 1px solid black;
+    border-radius: 20px;
+    background-color: white;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10px;
+    text-align: center;
+}
+li {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: large;
+}
+.bids {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin-left: 35%;
+    margin-bottom: 10px;
+}
+

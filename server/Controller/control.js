@@ -42,7 +42,7 @@ exports.getuser = function(req,res){
         } catch (e) {
             return res.status(401).send('unauthorized');
         }
-        console.log(decoded);
+        // console.log(decoded.id);
         res.send(decoded.id);
     }
 }

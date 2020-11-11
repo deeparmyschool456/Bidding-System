@@ -12,21 +12,31 @@ exports.insertBid = function(req , res) {
 }
 
 exports.getAllBid = function(req , res) {
-    bid.getall((err,data)=>{
-        if(err)
-            res.send(err);
-        else
-            res.send(data);    
+    bid.getall((err , data) => {
+        if(err) res.send(err);
+        else res.send(data);    
     })
 }
 
-
 exports.getMyCrop = function(req , res) {
     //console.log(req.body);
-    bid.getmycrop(req.body.email,(err,data)=>{
-        if(err)
-            res.send(err);
-        else
-            res.send(data);    
+    bid.getmycrop(req.body.email , (err , data) => {
+        if(err) res.send(err);
+        else res.send(data);    
+    })
+}
+
+exports.getPrice = function(req , res) {
+    // console.log(req.body);
+    bid.getmyPrice(req.body.id , (err , data) => {
+        if(err) res.send(err);
+        else res.send(data);
+    })
+}
+exports.placeBid = function(req , res) {
+    console.log(req.body);
+    bid.placeMyBid(req.body , (err , data) => {
+        if(err) res.send(err);
+        else res.send(data)
     })
 }
