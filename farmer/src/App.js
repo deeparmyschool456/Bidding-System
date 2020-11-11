@@ -34,8 +34,9 @@ class App extends React.Component {
       const url = 'http://localhost:8000/post/getuser';
       axios.get(url , {headers : {authorization : 'Bearer ' + token}})
       .then(res => {
-        console.log(res);
+        //console.log('Hello',res.data);
         this.setState({
+          email : res.data,
           logedIn : true
         });
       })

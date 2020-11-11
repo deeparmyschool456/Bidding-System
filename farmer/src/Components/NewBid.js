@@ -1,6 +1,11 @@
 import React from 'react';
 import '../Css/NewBid.css';
 import axios from 'axios';
+import { DiYii } from 'react-icons/di';
+import { AiFillHome } from 'react-icons/ai';
+import { IoMdContacts } from 'react-icons/io';
+import { GiCaptainHatProfile } from 'react-icons/gi';
+import { Link } from 'react-router-dom';
 
 class NewBid extends React.Component {
 
@@ -44,23 +49,50 @@ class NewBid extends React.Component {
     
     render() {
         return(
-            <>
-                <h4 style = {{textAlign : "center"}}>Create Your Bid</h4>
+            <div>
+                <h1 style = {{textAlign : "center"}}> AgroMart - Open Bidding System Platform </h1>
+                <div className = "NavBar">
+                    <div className = "SearchBar">
+                            <DiYii className = "Icons" title = "Open Bidding System"/>
+                            <input type = "text" className = "Search" style = {{color : "black"}} placeholder = "Search Here"/>
+                    </div>
+                    <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
+                        <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
+                        <IoMdContacts className = "MainIcons" title = "About" />
+                        <GiCaptainHatProfile className = "MainIcons" title = "Profile" onClick = {this.props.logout}/>
+                    </div>
+                </div>
+                <div className = "MainBody">
+                    <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
+                        <ul>
+                            <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
+                            <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/'}>Go Home</Link></li>
+                            
+                            
+                        </ul>
+                    </div>
+                    <div className="MainMenu" style={{background:"transparent"}}>
+                        
                 <div className = "myForm">
-                    <form className = "Form">
+                    <h4 style = {{textAlign : "center",border:"0px"}}>Create Your Bid</h4>
+                
+                    <form style={{border:"0px"}} className = "Form">
                         <label>
-                        Crop Type : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
+                        Crop Name : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
                         </label>
                         <label>
-                        BasePrice : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    
+                        BasePrice( per kg ) : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    
                         </label>
                         <label>
-                        Any Comments : <input type = "text" name = "comments" onChange = {this.handleChange}/>
+                        Status of Crop : <input type = "text" name = "comments" onChange = {this.handleChange}/>
                         </label>
                         <button type = "submit" onClick = {this.handleSubmit}> Make a Bid </button>
                     </form>
                 </div>
-            </>
+                
+                    </div>    
+                </div>
+            </div>
         )
     }
 }
