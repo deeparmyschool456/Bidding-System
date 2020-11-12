@@ -11,5 +11,7 @@ Router.get('/getallbid',bid_controller.getAllBid);
 Router.post('/getmycrop',bid_controller.getMyCrop);
 Router.post('/getprice' , bid_controller.getPrice);
 Router.post('/placebid' , bid_controller.placeBid);
+Router.post('/closebid' , bid_controller.closeBid);
+
 
 module.exports = Router;

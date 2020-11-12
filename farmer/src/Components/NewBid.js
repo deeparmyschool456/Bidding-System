@@ -21,9 +21,11 @@ class NewBid extends React.Component {
             [e.target.name] : e.target.value
         });
     }
+    /*
     componentDidMount() {
         console.log(this.props.email , 'heeeeee');
     }
+    */
     handleSubmit = (e) => {
 
         e.preventDefault();

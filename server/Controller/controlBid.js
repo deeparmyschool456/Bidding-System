@@ -40,3 +40,11 @@ exports.placeBid = function(req , res) {
         else res.send(data)
     })
 }
+
+exports.closeBid = function(req , res) {
+    
+    bid.closeMyBid(req.body , (err , data) => {
+        if(err) res.send(err);
+        else res.send(data)
+    })
+}

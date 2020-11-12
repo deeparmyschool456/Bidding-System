@@ -7,7 +7,7 @@ const Home = ()=> {
     const style1 = {
         opacity : "0.8" , 
         display : "block" ,
-        marginTop : "10%", 
+        marginTop : "5%", 
         width : "50%"
     }
     

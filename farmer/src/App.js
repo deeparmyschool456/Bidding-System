@@ -69,7 +69,7 @@ class App extends React.Component {
             <Route path = '/' render = {(props) => <NavBar {...props} email = {this.state.email} logout = {this.logout}/>}/>
             <Route exact path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>
             <Route exact path = "/newBid" render = {(props) => <NewBid {...props} email = {this.state.email}/>}/>
-            <Route exact path = "/:bid_id" render = {(props) => <Bid {...props} email = {this.state.email}/>}/>
+            <Route exact path = "/bid/:bid_id" render = {(props) => <Bid {...props} email = {this.state.email}/>}/>
           </BrowserRouter>
           <Footer />
         </>

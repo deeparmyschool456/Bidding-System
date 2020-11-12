@@ -20,13 +20,16 @@ bids.insertBid = function(new_bid , result) {
                 comments : new_bid.comments,
                 city : new_bid.city,
                 status : 0,
-                current_bid : new_bid.baseprice
+                CurrentBid : new_bid.baseprice
             };
-            // console.log(data);
+            console.log(data);
             myConnection.query('INSERT INTO BIDS SET ?' , data , (err , res) => {
                 
-                if(err) result(err , null);
-                else {
+                if(err){ 
+                    console.log(err);
+                    result(err , null);
+                
+                }else {
                     console.log('Inserted Bid'); 
                     result(null , res);
                 }
@@ -37,7 +40,7 @@ bids.insertBid = function(new_bid , result) {
 }
 
 bids.getall = function(result){
-    myConnection.query("SELECT * FROM BIDS ", (err , res) => {
+    myConnection.query("SELECT * FROM BIDS where is_closed=0 ", (err , res) => {
         if(err) result(err , null);
         else result(null , res);    
     })
@@ -71,17 +74,27 @@ bids.getmyPrice =  function(id , result) {
     })
 }
 bids.placeMyBid = function(pBid , result) {
-    //console.log(pBid);
+    console.log(pBid);
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , pBid.email , (err , res) => {
         if(err) result(err , null);
         else {
-            myConnection.query('UPDATE BIDS SET CURRENT_BID = ? , BUYER_ID = ? WHERE ID = ?' , [pBid.bidplaced , res[0].ID , pBid.id] , (err , res) => {
+            myConnection.query('UPDATE BIDS SET CURRENTBID = ? , BUYER_ID = ? , status=1 WHERE ID = ?' , [pBid.bidplaced , res[0].ID , pBid.id] , (err , res) => {
                 if(err) result(err , null);
                 else result(null , res)
             })
         }
     })
 }
+
+bids.closeMyBid = function( data, result) {
+    console.log(data);
+    myConnection.query('UPDATE BIDS SET is_closed=1 WHERE ID = ?' , data.id , (err , res) => {
+        if(err) result(err , null);
+        else result(null , res)
+    })
+}
+    
+
 
 
 module.exports = bids;
