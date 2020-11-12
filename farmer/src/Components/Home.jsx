@@ -13,7 +13,7 @@ class Home extends React.Component {
     
     state = { 
         bids : [],
-        
+        content:1
     }
     componentDidMount = () => {
         const url = 'http://localhost:8000/post/getallbid';
@@ -21,7 +21,8 @@ class Home extends React.Component {
         axios.get(url).then(res => {
             console.log(res.data);
             this.setState({
-                bids : res.data
+                bids : res.data,
+                content:1
             }); 
         })
     }
@@ -38,7 +39,8 @@ class Home extends React.Component {
             axios.post(url , data).then(res => {
                 // console.log(res.data);
                 this.setState({
-                bids : res.data
+                bids : res.data,
+                content:2
                 }); 
             })
             
@@ -47,7 +49,19 @@ class Home extends React.Component {
         {
             
         }
-
+    }
+    closebid(id)
+    {
+        const url = 'http://localhost:8000/post/closebid';
+            
+        const data={
+            id:id
+        }
+            axios.post(url , data).then(res => {
+                alert("Bid Closed Successfully");
+                window.location.reload();
+                 
+            })
     }
 
     render() {
@@ -58,15 +72,33 @@ class Home extends React.Component {
             bids.map(bid => {
                 return(
                         
-                            <div className="card" key = {bid.ID} style = {{width: "18rem", height:"400px" , margin:"20px"}}>
+                            <div className="card" key = {bid.ID} style = {{width: "18rem", height:"420px" , margin:"20px"}}>
                                 <img className = "card-img-top" src = {Img} height="180px"></img>
                                 <div className = "card-body text-center">
                                     <h5 className = "card-title" style = {{marginTop:"-15px"}}><b> {bid.crop} </b></h5>
-                                    <p style = {{marginTop : "-10px" , fontWeight : "bold"}}> from : {bid.city} </p>
+                                    <p style = {{marginTop : "-10px" , fontWeight : "bold"}}> from : {bid.City} </p>
                                     <p className = "card-text" style = {{marginTop : "-10px"}}><b>Status of Crop :</b> {bid.comments}</p>
                                     <p style = {{marginTop:"-20px"}}><b>BasePrice : </b> {bid.baseprice} per Kg</p>
-                                    <p style = {{marginTop : "-20px"}}><b>CurrentBid : </b>{bid.current_bid} per Kg</p>
-                                    <Link to = {'/' + bid.ID} className = "btn btn-primary text-center" style = {{marginTop : "-20px"}}> Place Your Bid </Link>
+                                    {
+                                        bid.status==1 && 
+                                        <p style = {{marginTop : "-20px"}}><b>CurrentBid : </b>{bid.Currentbid} per Kg</p>
+                                    }
+                                    {
+                                        bid.status==0 && 
+                                        <p style = {{marginTop : "-20px"}}><b>CurrentBid : No Bid Placed</b></p>
+                                    }    
+                                    {
+                                        this.state.content==1 && 
+                                        <Link to = {'/bid/' + bid.ID} className = "btn btn-primary text-center" style = {{marginTop : "-20px"}}> Place Your Bid </Link>
+                                    }
+                                    {
+                                        this.state.content==2 && bid.is_closed==0 && 
+                                        <Link onClick={()=>{this.closebid(bid.ID)}} className = "btn btn-primary text-center" style = {{marginTop : "-20px"}}> Close Your Bid </Link>
+                                    }
+                                    {
+                                        this.state.content==2 && bid.is_closed==1 && 
+                                        <Link className = "btn btn-primary text-center" style = {{marginTop : "-20px"}}>Bid Already Closed </Link>
+                                    }
                                 </div>
                             </div>  
                     )
