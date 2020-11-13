@@ -114,7 +114,7 @@ class Home extends React.Component {
         return (
             <div>
                 <div className = "MainBody">
-                    <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
+                    <div className = "leftMenu"> 
                         <ul>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
                             <a><li value="1" style = {buttonLi} onClick={this.change}>Status of Your Crops</li></a>

@@ -1,3 +1,12 @@
+.topimg h1{
+    background-image: url('../Image/agro.JPG');
+    background-repeat: no-repeat;
+    width: 920px;
+    height: 155px;
+    order:2;
+    margin-left: 300px;
+}
+
 .NavBar {
     display: flex;
     flex-direction: row;
@@ -6,15 +15,13 @@
     padding: 20px; 
     border: 1px;
     border-radius: 30px;
-    background-color: #f7f7f7;
-    opacity: 0.8;
-    margin-left: 10px;
+	margin-left: 10px;
     margin-right: 10px;
 }
 .Icons {
-    height: 35px;
+    height: 37px;
     width: 40px;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 5px 0 5px 0;
     border-radius: 15px;
     margin-right: 5px;
@@ -25,7 +32,7 @@
 .SearchBar {
     display: flex;
     flex-direction: row; 
-    
+    margin-top: -87px;
 }
 .Search {
     border: 1px solid grey;
@@ -34,16 +41,18 @@
 .Main {
     margin-left: auto;
     justify-content: space-between;
+    margin-top: -87px;
 }
 
 .MainIcons {
-    height: 35px;
+    height: 37px;
     width: 40px;
     margin-top: 10px;
     padding: 5px 0 5px 0;
     border-radius: 15px;
     margin-right: 5px;
     margin-left: 5px;
+    color: black;
     cursor: pointer;
 }
 .MainBody {
@@ -54,12 +63,14 @@
 .leftMenu {
     flex-basis: 1;
     float : left;
-    width: 20%;
-    background-color: #838282;
+    width: 17%;
     overflow-y : hidden;
+    font-family: 'Montserrat', sans-serif;
     border-radius: 30px;
     margin-top: 5px;  
     margin-left: 10px; 
+    opacity: 90%;
+    color: black !important; 
 }
 .leftMenu ul li {
     padding : 10px;
@@ -70,14 +81,15 @@
     border: 1px ;
     margin-right: 20px;
     border-radius: 25px;
-    background-color: rgb(185, 179, 187);
+    /*background-color: rgb(185, 179, 187);*/
 }
 .leftMenu ul li a {
     font-size: 20px;
+    color: black !important;
 }
 .leftMenu ul li :hover {
     margin-left: 20px;
-    color:#eb5b34;
+    /*color:#eb5b34;*/
     transition: .3s ease-out;
     white-space: nowrap;
     overflow-x: hidden;
@@ -93,7 +105,7 @@
     color: black;
 }
 .MainMenu {
-    margin-left: 10px;
+    margin-left: 50px;
     width: 80%;
     justify-self: inherit;
     border-radius: 30px;
@@ -103,4 +115,8 @@
     grid-auto-columns: auto;
     grid-gap: 10px;
     background-color:white;
+}
+
+::placeholder{
+color: #000000;    
 }
