@@ -8,7 +8,7 @@ var bids = function(bid) {
     this.city = bid.city;
 }
 bids.insertBid = function(new_bid , result) {
-    console.log(new_bid);
+    //console.log(new_bid);
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , new_bid.email , (err , res) => {
         if(err) result(err , null);
         else {
@@ -22,7 +22,7 @@ bids.insertBid = function(new_bid , result) {
                 status : 0,
                 CurrentBid : new_bid.baseprice
             };
-            console.log(data);
+            //console.log(data);
             myConnection.query('INSERT INTO BIDS SET ?' , data , (err , res) => {
                 
                 if(err){ 
@@ -30,7 +30,7 @@ bids.insertBid = function(new_bid , result) {
                     result(err , null);
                 
                 }else {
-                    console.log('Inserted Bid'); 
+                    //console.log('Inserted Bid'); 
                     result(null , res);
                 }
             })
@@ -40,7 +40,7 @@ bids.insertBid = function(new_bid , result) {
 }
 
 bids.getall = function(result){
-    myConnection.query("SELECT * FROM BIDS where is_closed = 0 ", (err , res) => {
+    myConnection.query("SELECT * FROM BIDS where is_closed=0 ", (err , res) => {
         if(err) result(err , null);
         else result(null , res);    
     })
@@ -74,7 +74,7 @@ bids.getmyPrice =  function(id , result) {
     })
 }
 bids.placeMyBid = function(pBid , result) {
-    console.log(pBid);
+    //console.log(pBid);
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , pBid.email , (err , res) => {
         if(err) result(err , null);
         else {
@@ -94,14 +94,14 @@ bids.placeMyBid = function(pBid , result) {
     })
 }
 
-bids.closeMyBid = function(data , result) {
+bids.closeMyBid = function( data, result) {
     //console.log(data);
-    myConnection.query('UPDATE BIDS SET is_closed = 1 WHERE ID = ?' , data.id , (err , res) => {
+    myConnection.query('UPDATE BIDS SET is_closed=1 WHERE ID = ?' , data.id , (err , res) => {
         if(err) result(err , null);
         else result(null , res)
     })
 }
-
+    
 bids.status = function(data , result) {
     //console.log(data);
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , data.email , (err , res) => {
@@ -119,7 +119,8 @@ bids.status = function(data , result) {
                             cnt++;
                             //console.log(res2[0]);
                             data.push(res2[0]);
-                            if(cnt === res1.length) result(null , data);
+                            if(cnt === res1.length) 
+                                result(null , data);
                         })
                     }
                     // console.log(data);
@@ -128,4 +129,7 @@ bids.status = function(data , result) {
         }
     })
 }
+
+
+
 module.exports = bids;
