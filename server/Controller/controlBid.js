@@ -48,3 +48,9 @@ exports.closeBid = function(req , res) {
         else res.send(data)
     })
 }
+exports.status = function(req , res) {
+    bid.status(req.body , (err , data) => {
+        if(err) res.send(err);
+        else res.send(data);
+    })
+}

@@ -40,7 +40,7 @@ bids.insertBid = function(new_bid , result) {
 }
 
 bids.getall = function(result){
-    myConnection.query("SELECT * FROM BIDS where is_closed=0 ", (err , res) => {
+    myConnection.query("SELECT * FROM BIDS where is_closed = 0 ", (err , res) => {
         if(err) result(err , null);
         else result(null , res);    
     })
@@ -82,19 +82,50 @@ bids.placeMyBid = function(pBid , result) {
                 if(err) result(err , null);
                 else result(null , res)
             })
+            const data = {
+                cropid : pBid.id , 
+                buyerid : res[0].ID
+            }
+            myConnection.query('INSERT INTO PBID SET ?' , data , (err , res) => {
+                if(err) console.log(err);
+                else console.log('Inserted');
+            })
         }
     })
 }
 
-bids.closeMyBid = function( data, result) {
-    console.log(data);
-    myConnection.query('UPDATE BIDS SET is_closed=1 WHERE ID = ?' , data.id , (err , res) => {
+bids.closeMyBid = function(data , result) {
+    //console.log(data);
+    myConnection.query('UPDATE BIDS SET is_closed = 1 WHERE ID = ?' , data.id , (err , res) => {
         if(err) result(err , null);
         else result(null , res)
     })
 }
-    
 
-
-
+bids.status = function(data , result) {
+    //console.log(data);
+    myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , data.email , (err , res) => {
+        if(err) result(err , null);
+        else {
+            myConnection.query('SELECT CROPID FROM PBID WHERE BUYERID = ?' , res[0].ID , (err , res1) => {
+                if(err) console.log(err);
+                else {
+                    //console.log(res1);
+                    var data = [];
+                    var cnt = 0;
+                    for(let index = 0 ; index < res1.length ; index++) {
+                        //console.log(res1[index].ID);
+                        myConnection.query('SELECT * FROM BIDS WHERE ID = ?' , res1[index].CROPID , (err , res2) => {
+                            cnt++;
+                            //console.log(res2[0]);
+                            data.push(res2[0]);
+                            if(cnt === res1.length) result(null , data);
+                        })
+                    }
+                    // console.log(data);
+                }
+            })
+        }
+    })
+}
 module.exports = bids;

@@ -15,15 +15,15 @@ exports.create = function(req , res) {
     })
 }
 exports.gettoken = function(req , res){
-       // console.log(req.body);
         user.login(req.body.email , req.body.password , (err , user) => {
-
+        //console.log(user);
         if(err) res.send(null);
         else
         {
             if(user.length === 1)
             {
-                const payload = {id : user[0].email};
+                const payload = {id : user[0].EMAIL};
+                //console.log(payload);
                 const token = jwt.sign(payload , process.env.JWT_KEY);
                 res.send(token);
             }
@@ -32,17 +32,19 @@ exports.gettoken = function(req , res){
     })
 }
 
-exports.getuser = function(req,res){
+exports.getuser = function(req , res){
     
     if (req.headers && req.headers.authorization) {
         
         var authorization = req.headers.authorization.split(' ')[1],decoded;
+        //console.log(authorization);
         try {
             decoded = jwt.verify(authorization,process.env.JWT_KEY);
+            //console.log(decoded);
         } catch (e) {
             return res.status(401).send('unauthorized');
         }
-        // console.log(decoded.id);
+        //console.log(decoded.iat);
         res.send(decoded.id);
     }
 }

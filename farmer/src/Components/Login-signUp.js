@@ -3,8 +3,8 @@ import '../Css/Home.css'
 import { FaFacebookSquare } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import axios from 'axios';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
-import { ToastProvider, useToasts } from 'react-toast-notifications'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Login extends React.Component {
 
@@ -28,11 +28,15 @@ class Login extends React.Component {
 
         if(this.state.email.length === 0 || this.state.password.length === 0) {
             //alert('Feild Can \'t be Empty ');
-            //NotificationManager.success('Message', 'ABC');
-            //addToast("Fields cant be empty", { appearance: 'error' })
-            NotificationManager.info("Fields can't be empty");
-            
-            
+            toast.error("Fields can't be empty", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         } else {
             const data = {
                 email : this.state.email , 
@@ -46,7 +50,15 @@ class Login extends React.Component {
                     this.props.changeState(this.state.username , this.state.email , this.state.password);
                     this.props.history.push('/');
                 } else {
-                    NotificationManager.info('Wrong Credentials');
+                    toast.error("Wrong Credentials", {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             })
         }
@@ -63,18 +75,42 @@ class Login extends React.Component {
         axios.post(url , data).then(res => {
             console.log(res);
             if(res.data.errno) 
-                NotificationManager.error("Email/Username already there");    
+                //NotificationManager.error("");   
+                toast.error("Email/Username already there", {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }); 
             
             else {
-                
-                NotificationManager.info("Successful Signup.Now Login");    
+                //NotificationManager.info("Successful Signup.Now Login"); 
+                toast.success('Successful Signup.Now Login', {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });  
                 const container = document.getElementById('container');
-                container.classList.add("right-panel-active");
+                container.classList.remove("right-panel-active");
             }
         }).catch(err => {
-            console.log("Error:",err);
-            NotificationManager.info("Unexpected Error occured.Please Try Again");
-            
+            //console.log("Error:",err);
+            toast.error("Unexpected Error occured.Please Try Again", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         })
     }
     handleChange = (event) => {
@@ -101,7 +137,6 @@ class Login extends React.Component {
                             <input type="email" placeholder="Email" name = "email" onChange = {this.handleChange} autoComplete = "off"/>
                             <input type="password" placeholder="Password" name = "password" onChange = {this.handleChange} autoComplete = "off"/>
                             <button type="submit" >Sign Up</button>
-                            <NotificationContainer/>
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
@@ -116,7 +151,6 @@ class Login extends React.Component {
                             <input type="password" placeholder="Password" name = "password" onChange = {this.handleChange} autoComplete = "off"/>
                             <a href="#">Forgot your password?</a>
                             <button type="submit">Log In</button>
-                            <NotificationContainer/>
                         </form>
                     </div>
                     <div className="overlay-container">

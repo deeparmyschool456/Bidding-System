@@ -9,6 +9,7 @@ import Footer from './Components/Footer';
 import NewBid from './Components/NewBid';
 import Bid from './Components/Bid';
 import NavBar from './Components/NavBar';
+import {ToastContainer} from 'react-toastify';
 
 class App extends React.Component {
 
@@ -26,7 +27,7 @@ class App extends React.Component {
   componentDidMount() {
 
     const token = localStorage.getItem('cool-jwt');
-    // console.log(token);
+    console.log(token);
     if(!token) {
       this.setState({
         logedIn : false
@@ -53,6 +54,17 @@ class App extends React.Component {
     if(!this.state.logedIn) {
       return(
         <>
+          <ToastContainer
+            position = "bottom-center"
+            autoClose = {5000}
+            hideProgressBar = {false}
+            newestOnTop = {false}
+            closeOnClickrtl = {false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            />
+          <ToastContainer />
           <BrowserRouter>
             <Route exact path = '/' component = {MainHome} />
             <Route path = '/login' render = {(props) => <Login {...props} 
@@ -65,6 +77,17 @@ class App extends React.Component {
     } else {
       return(
         <>  
+          <ToastContainer
+            position = "bottom-center"
+            autoClose = {5000}
+            hideProgressBar = {false}
+            newestOnTop = {false}
+            closeOnClickrtl = {false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            />
+          <ToastContainer />
           <BrowserRouter>
             <Route path = '/' render = {(props) => <NavBar {...props} email = {this.state.email} logout = {this.logout}/>}/>
             <Route exact path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>

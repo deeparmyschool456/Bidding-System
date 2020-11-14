@@ -1,11 +1,8 @@
 import React from 'react';
 import '../Css/NewBid.css';
 import axios from 'axios';
-import { DiYii } from 'react-icons/di';
-import { AiFillHome } from 'react-icons/ai';
-import { IoMdContacts } from 'react-icons/io';
-import { GiCaptainHatProfile } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify'; 
 
 class NewBid extends React.Component {
 
@@ -31,7 +28,15 @@ class NewBid extends React.Component {
         e.preventDefault();
         const {crop , basePrice , comments , city} = this.state;
         if(crop.length === 0 || basePrice === 0) {
-            alert('Fields Are Empty');
+            toast.error("Fields can't be empty", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
         else {
             const url = 'http://localhost:8000/post/newbid';
@@ -45,11 +50,28 @@ class NewBid extends React.Component {
             // console.log(data);
             axios.post(url , data)
             .then(res => {
-                alert('Added Succesfully!');
+                //alert('Added Succesfully!');
+                toast.success("Added Succesfully", {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 this.props.history.push('/');
             })
             .catch(err => {
-                alert('Error Occured!');
+                toast.error("Error Occurred ", {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
         }
     }
@@ -58,7 +80,7 @@ class NewBid extends React.Component {
         return(
             <div>
                 <div className = "MainBody">
-                    <div className = "leftMenu" > 
+                    <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/'}>Go Home</Link></li>
