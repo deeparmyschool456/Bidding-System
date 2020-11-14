@@ -9,8 +9,8 @@ class NavBar extends React.Component {
 
     render() {
         return(
-            <div>
-                <h1 style = {{textAlign : "center"}}> AgroMart - Open Bidding System Platform </h1>
+            <div className="topimg">
+                <h1 style = {{textAlign : "center"}}></h1>
                 <div className = "NavBar">
                     <div className = "SearchBar">
                     <DiYii className = "Icons" title = "Open Bidding System"/>
