@@ -2,16 +2,15 @@ import React from 'react';
 import {BrowserRouter , Route} from 'react-router-dom'
 import './App.css';
 import Login from './Components/Login-signUp';
+import Home from './Components/Home';
 import axios from 'axios';
 import MainHome from './Components/not-logged-in';
 import Footer from './Components/Footer';
 import NewBid from './Components/NewBid';
 import Bid from './Components/Bid';
 import NavBar from './Components/NavBar';
-import Home from './Components/Home';
-import LazyLoad from 'react-lazyload';
 import {ToastContainer} from 'react-toastify';
-
+import Profile from './Components/Profile';
 
 class App extends React.Component {
 
@@ -29,7 +28,7 @@ class App extends React.Component {
   componentDidMount() {
 
     const token = localStorage.getItem('cool-jwt');
-    // console.log(token);
+    console.log(token);
     if(!token) {
       this.setState({
         logedIn : false
@@ -56,7 +55,7 @@ class App extends React.Component {
     if(!this.state.logedIn) {
       return(
         <>
-        <ToastContainer
+          <ToastContainer
             position = "bottom-center"
             autoClose = {5000}
             hideProgressBar = {false}
@@ -69,7 +68,7 @@ class App extends React.Component {
           <ToastContainer />
           <BrowserRouter>
             <Route exact path = '/' component = {MainHome} />
-            <Route path = '/login' render = {(props) => <Login {...props} 
+            <Route exact path = '/login' render = {(props) => <Login {...props} 
             logedIn = {this.state.logedIn} 
             changeState = {this.changeState}
             />} />
@@ -79,7 +78,7 @@ class App extends React.Component {
     } else {
       return(
         <>  
-        <ToastContainer
+          <ToastContainer
             position = "bottom-center"
             autoClose = {5000}
             hideProgressBar = {false}
@@ -91,12 +90,13 @@ class App extends React.Component {
             />
           <ToastContainer />
           <BrowserRouter>
-            <Route path = '/' render = {(props) => <NavBar {...props} email = {this.state.email} logout = {this.logout}/>}/>
+            {/* <Route path = '/' render = {(props) => <NavBar {...props} email = {this.state.email} logout = {this.logout}/>}/> */}
             <Route exact path = "/" render = {(props) => <Home {...props} email = {this.state.email} logout = {this.logout}/>}/>
             <Route exact path = "/newBid" render = {(props) => <NewBid {...props} email = {this.state.email}/>}/>
             <Route exact path = "/bid/:bid_id" render = {(props) => <Bid {...props} email = {this.state.email}/>}/>
+            <Route path = "/profile" render = {(props) => <Profile {...props} email = {this.state.email}/>}/>
           </BrowserRouter>
-          <Footer />
+          {/* <Footer /> */}
         </>
       )
     }

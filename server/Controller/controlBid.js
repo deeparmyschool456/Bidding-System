@@ -34,7 +34,7 @@ exports.getPrice = function(req , res) {
     })
 }
 exports.placeBid = function(req , res) {
-    //console.log(req.body);
+    console.log(req.body);
     bid.placeMyBid(req.body , (err , data) => {
         if(err) res.send(err);
         else res.send(data)

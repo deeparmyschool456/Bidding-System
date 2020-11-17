@@ -75,7 +75,6 @@ class NewBid extends React.Component {
             })
         }
     }
-    
     render() {
         return(
             <div>
@@ -83,33 +82,28 @@ class NewBid extends React.Component {
                     <div className = "leftMenu" style = {{backgroundColor : "#fa6461"}}> 
                         <ul>
                             <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/newBid'}>Sell Your Crop</Link></li>
-                            <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/'}>Go Home</Link></li>
-                            
-                            
+                            <li style={{backgroundColor : "white" , marginLeft : "10px"}}><Link to = {'/'}>Go Home</Link></li>  
                         </ul>
                     </div>
                     <div className="MainMenu" style={{background:"transparent"}}>
-                        
-                <div className = "myForm">
-                    <h4 style = {{textAlign : "center",border:"0px"}}>Create Your Bid</h4>
-                
-                    <form style={{border:"0px"}} className = "Form">
-                        <label>
-                        Crop Name : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
-                        </label>
-                        <label>
-                        City : <input type = "text" placeholder = "City / town" name = "city"  onChange = {this.handleChange} autoComplete = "off"/>
-                        </label>
-                        <label>
-                        BasePrice( per kg ) : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    
-                        </label>
-                        <label>
-                        Status of Crop : <input type = "text" name = "comments" onChange = {this.handleChange}/>
-                        </label>
-                        <button type = "submit" onClick = {this.handleSubmit}> Make a Bid </button>
-                    </form>
-                </div>
-                
+                        <div className = "myForm">
+                            <h4 style = {{textAlign : "center", border:"0px"}}>Create Your Bid</h4>
+                            <form style={{border:"0px"}} className = "Form">
+                                <label>
+                                Crop Name : <input  type = "text" placeholder = "Crop Type" name = "crop" onChange = {this.handleChange} autoComplete = "off"/>
+                                </label>
+                                <label>
+                                City : <input type = "text" placeholder = "City / town" name = "city"  onChange = {this.handleChange} autoComplete = "off"/>
+                                </label>
+                                <label>
+                                BasePrice( per kg ) : <input type = "number" placeholder = "0.0" name = "basePrice" onChange = {this.handleChange} autoComplete = "off"/>    
+                                </label>
+                                <label>
+                                Status of Crop : <input type = "text" name = "comments" onChange = {this.handleChange}/>
+                                </label>
+                                <button type = "submit" onClick = {this.handleSubmit}> Make a Bid </button>
+                            </form>
+                        </div>
                     </div>    
                 </div>
             </div>

@@ -30,7 +30,7 @@ class Login extends React.Component {
             //alert('Feild Can \'t be Empty ');
             toast.error("Fields can't be empty", {
                 position: "bottom-center",
-                autoClose: 3000,
+                autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -52,7 +52,7 @@ class Login extends React.Component {
                 } else {
                     toast.error("Wrong Credentials", {
                         position: "bottom-center",
-                        autoClose: 3000,
+                        autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -78,7 +78,7 @@ class Login extends React.Component {
                 //NotificationManager.error("");   
                 toast.error("Email/Username already there", {
                     position: "bottom-center",
-                    autoClose: 3000,
+                    autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -90,7 +90,7 @@ class Login extends React.Component {
                 //NotificationManager.info("Successful Signup.Now Login"); 
                 toast.success('Successful Signup.Now Login', {
                     position: "bottom-center",
-                    autoClose: 3000,
+                    autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -104,7 +104,7 @@ class Login extends React.Component {
             //console.log("Error:",err);
             toast.error("Unexpected Error occured.Please Try Again", {
                 position: "bottom-center",
-                autoClose: 3000,
+                autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
