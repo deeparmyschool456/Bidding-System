@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import '../Css/footer.css';
 
 const footer = () => {
@@ -10,66 +9,68 @@ const footer = () => {
     }
     return(
             <div style = {footer}>
-            <footer>
-            <div className="main-content">
-        
-                <div className="left box">
-                <h2>About us</h2>
-                <div className="content">
-                    <h6 style={{color:"black"}}>“AGROMART" – The Market for Farmers</h6>
-                    <div className="social">
-                    <a href="#"><span className="fab fa-facebook-f"></span></a>
-                    <a href="#"><span className="fab fa-twitter"></span></a>
-                    <a href="#"><span className="fab fa-instagram"></span></a>
-                    <a href="#"><span className="fab fa-github"></span></a>
-                    </div>
-                </div>
-                </div>
+            <footer className="flex-rw">
+  
+  <ul className="footer-list-top">
+    <li>
+      <h4 className="footer-list-header">About AgroMart</h4></li>
+    <li><a className="generic-anchor footer-list-anchor">"AGROMART" – The Market for Farmers</a></li>
+    
+  </ul>
+  <ul className="footer-list-top">
+    <li>
+      <h4 className="footer-list-header">ADDRESS </h4></li>
 
-                <div className="center box">
-                <h2>Address</h2>
-                  <div className="content">
+    <div className="contentab">
                       <div className="place">
                         <span className="fas fa-map-marker-alt"></span>
-                        <span className="text">Office 311,Bengaluru,India</span>
+                        <span className="text">Office 007,Pune,India</span>
                       </div>
                       <div className="phone">
                         <span className="fas fa-phone-alt"></span>
-                        <span className="text">+91-7839057391</span>
+                        <span className="text">+91-783907391</span>
                       </div>
                       <div className="email">
                         <span className="fas fa-envelope"></span>
                         <span className="text">agromart@agro.com</span>
                       </div>
-                </div>
-                </div>
-
-        <div className="right box">
-          <h2>Contact us</h2>
-          <div className="content">
-            <form action="#">
-              <div className="email">
-                <div className="text">Email *</div>
-                <input type="email" required></input>
-              </div>
-              <div className="msg">
-                <div className="text">Message *</div>
-                <textarea rows="2" cols="25" required></textarea>
-              </div>
-              <div>
-                <button type="submit">Send</button>
-              </div>
-            </form>
-          </div>
-        </div>
+    </div>
+    
+    
+  </ul>
+  <ul className="footer-list-top">
+    <li id='help'>
+      <h4 className="footer-list-header">HELP</h4></li>
+    <li><a className="generic-anchor footer-list-anchor">CONTACT</a></li>
+    <li><a className="generic-anchor footer-list-anchor">FAQ</a></li>
+    <li id='find-a-store'><a className="generic-anchor footer-list-anchor">GOVT. BIDDERS</a></li>
+    
+    
+  </ul>
+  <section className="footer-social-section flex-rw">
+      <span className="footer-social-overlap footer-social-connect">
+      CONNECT <span className="footer-social-small">with</span> US
+      </span>
+      <span className="footer-social-overlap footer-social-icons-wrapper">
+      <a className="generic-anchor" target="_blank" title="Pinterest"><i className="fa fa-pinterest"></i></a>
+      <a className="generic-anchor" target="_blank" title="Facebook"><i className="fa fa-facebook"></i></a>
+      <a className="generic-anchor" target="_blank" title="Twitter"><i className="fa fa-twitter"></i></a>
+      <a className="generic-anchor" target="_blank" title="Instagram"><i className="fa fa-instagram"></i></a>
+      <a className="generic-anchor" target="_blank" title="Youtube"><i className="fa fa-youtube"></i></a>
+      <a className="generic-anchor" target="_blank" title="Google Plus"><i className="fa fa-google-plus"></i></a>
+      </span>
+  </section>
+  <section className="footer-bottom-section flex-rw">
+<div className="footer-bottom-wrapper">   
+<i className="fa fa-copyright" role="copyright">
+ 
+</i> 2020 Pavilion in <address className="footer-address" role="company address">AgroMart, PUNE</address><span className="footer-bottom-rights"> - All Rights Reserved - </span>
+    </div>
+    <div className="footer-bottom-wrapper">
+    <a className="generic-anchor" rel="nofollow">Terms</a> | <a className="generic-anchor" rel="nofollow">Privacy</a>
       </div>
-      <div className="bottom">
-        <center>
-          <span className="credit">Created By <a href="#">TEAM AARIV</a> | </span>
-          <span className="far fa-copyright"></span><span> 2020 All rights reserved.</span>
-        </center>
-      </div>
-      </footer>
+  </section>
+</footer>
     </div>
 )}
 

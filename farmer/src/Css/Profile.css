@@ -111,6 +111,15 @@
     cursor: pointer;
     margin: 2px;
 }
+.Stara {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 2px;
+    color: blue;
+    
+}
+
 .Star:hover {
     color: black;
     
@@ -133,7 +142,7 @@
     justify-content: center;
 }
 .conc:hover {
-    transform: scale(1.5);
+    transform: scale(1.1);
     border-bottom: 1px solid green;
 }
 h5 {
