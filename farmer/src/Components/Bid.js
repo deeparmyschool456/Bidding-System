@@ -1,6 +1,9 @@
 import React from  'react';
 import axios from 'axios';
 import '../Css/Bid.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 class Bid extends React.Component {
     state = {
@@ -38,7 +41,18 @@ class Bid extends React.Component {
         });
     }
     handleSubmit = (e) => { 
-        if(this.state.bidPlaced <= this.state.curBid || this.state.bidPlaced <= this.state.baseprice ) alert('Place a Higher Bid than before');
+        if(this.state.bidPlaced <= this.state.curBid || this.state.bidPlaced <= this.state.baseprice ){ 
+            
+            toast.error("Place a Higher Bid than before", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
         else {
             const url = 'http://localhost:8000/post/placebid';
             const data = {bidplaced : this.state.bidPlaced , email : this.props.email , id : this.props.match.params.bid_id};
@@ -46,14 +60,21 @@ class Bid extends React.Component {
             axios.post(url , data).then(res => {
                 this.props.history.push('/');
             }).catch(e =>{
-                alert('Error Occured');
+                toast.error("Unexpected Error Occured.Try Again Please!", {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }); 
             })
         }
     }
     render()
     {
-        const id = this.props.match.params.bid_id;
-        const {curBid , bidPlaced , buyer_id , city , comments , crop , baseprice} = this.state;
+        const {curBid , city  , crop , baseprice} = this.state;
         console.log(this.state);
         return(
             <>

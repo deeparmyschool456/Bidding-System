@@ -6,9 +6,12 @@ var bids = function(bid) {
     this.baseprice = bid.baseprice;
     this.comments = bid.comments;
     this.city = bid.city;
+    this.bidtime = bid.bidtime,
+    this.weight = bid.weight
 }
+
 bids.insertBid = function(new_bid , result) {
-    console.log(new_bid);
+    //console.log(new_bid);
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , new_bid.email , (err , res) => {
         if(err) result(err , null);
         else {
@@ -20,9 +23,11 @@ bids.insertBid = function(new_bid , result) {
                 comments : new_bid.comments,
                 city : new_bid.city,
                 status : 0,
-                CurrentBid : new_bid.baseprice
+                CurrentBid : new_bid.baseprice,
+                bidtime : new_bid.bidtime,
+                weight : new_bid.weight
             };
-            console.log(data);
+            //console.log(data);
             myConnection.query('INSERT INTO BIDS SET ?' , data , (err , res) => {
                 
                 if(err){ 
@@ -30,7 +35,7 @@ bids.insertBid = function(new_bid , result) {
                     result(err , null);
                 
                 }else {
-                    console.log('Inserted Bid'); 
+                    //console.log('Inserted Bid'); 
                     result(null , res);
                 }
             })
@@ -40,7 +45,7 @@ bids.insertBid = function(new_bid , result) {
 }
 
 bids.getall = function(result){
-    myConnection.query("SELECT * FROM BIDS where is_closed = 0 ", (err , res) => {
+    myConnection.query("SELECT * FROM BIDS,users where bids.is_closed=0 and users.ID=bids.Buyer_id", (err , res) => {
         if(err) result(err , null);
         else result(null , res);    
     })
@@ -54,7 +59,7 @@ bids.getmycrop = function(email , result) {
            //console.log(res);
            
            // console.log(data);
-           myConnection.query('SELECT * from bids where USER_ID = ?' , res[0].ID , (err , res) => {
+           myConnection.query('SELECT * from bids,users where users.ID=bids.Buyer_id and USER_ID = ?' , res[0].ID , (err , res) => {
                
                if(err) result(err , null);
                else {
@@ -68,19 +73,41 @@ bids.getmycrop = function(email , result) {
 }
 bids.getmyPrice =  function(id , result) {
     // console.log(id);
-    myConnection.query('SELECT * FROM BIDS WHERE ID = ?' , id , (err , res) => {
+    myConnection.query('SELECT * FROM BIDS WHERE Crop_ID = ?' , id , (err , res) => {
         if(err) result(err , null);
         else result(null , res);
     })
 }
 bids.placeMyBid = function(pBid , result) {
-    console.log(pBid);
+    //console.log(pBid);
+
+    myConnection.query("SELECT bidtime from bids where Crop_ID= ?",pBid.id,(err,res1)=>{
+    var today=new Date();
+    var lastday=today.getDate() - (today.getDay() - 1) + res1[0].bidtime+1;
+    lastday=new Date(today.setDate(lastday));
+
+    var dd = String(lastday.getDate()).padStart(2, '0');
+    var mm = String(lastday.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = lastday.getFullYear();
+
+    var hour=today.getHours();
+    var min=today.getMinutes();
+    var sec=today.getSeconds();
+
+    var endingdate=yyyy+'-'+mm+'-'+dd+' '+hour+':'+min+':'+sec;
+
+    console.log(endingdate);
+
+    
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , pBid.email , (err , res) => {
         if(err) result(err , null);
         else {
-            myConnection.query('UPDATE BIDS SET CURRENTBID = ? , BUYER_ID = ? , status=1 WHERE ID = ?' , [pBid.bidplaced , res[0].ID , pBid.id] , (err , res) => {
-                if(err) result(err , null);
-                else result(null , res)
+            myConnection.query('UPDATE BIDS SET CURRENTBID = ? , BUYER_ID = ? ,EndDate = ? , status=1 WHERE Crop_ID = ?' , [pBid.bidplaced , res[0].ID ,endingdate,pBid.id] , (err , res) => {
+                if(err) {
+                    console.log(err);
+                    result(err , null);
+                }
+                    else result(null , res)
             })
             const data = {
                 cropid : pBid.id , 
@@ -92,34 +119,38 @@ bids.placeMyBid = function(pBid , result) {
             })
         }
     })
+    })
 }
 
-bids.closeMyBid = function(data , result) {
+bids.closeMyBid = function( data, result) {
     //console.log(data);
-    myConnection.query('UPDATE BIDS SET is_closed = 1 WHERE ID = ?' , data.id , (err , res) => {
+    myConnection.query('UPDATE BIDS SET is_closed=1 WHERE Crop_ID = ?' , data.id , (err , res) => {
         if(err) result(err , null);
         else result(null , res)
     })
 }
-
+    
 bids.status = function(data , result) {
-    //console.log(data);
+    console.log(data);
     myConnection.query('SELECT ID FROM USERS WHERE EMAIL = ?' , data.email , (err , res) => {
         if(err) result(err , null);
         else {
-            myConnection.query('SELECT CROPID FROM PBID WHERE BUYERID = ?' , res[0].ID , (err , res1) => {
+            myConnection.query('SELECT DISTINCT CROPID FROM PBID WHERE BUYERID = ?' , res[0].ID , (err , res1) => {
                 if(err) console.log(err);
                 else {
                     //console.log(res1);
                     var data = [];
                     var cnt = 0;
+                    if(res1.length==0)
+                        result(null,res1);
                     for(let index = 0 ; index < res1.length ; index++) {
                         //console.log(res1[index].ID);
-                        myConnection.query('SELECT * FROM BIDS WHERE ID = ?' , res1[index].CROPID , (err , res2) => {
+                        myConnection.query('SELECT * from bids,users where users.ID=bids.Buyer_id and Crop_ID = ?' , res1[index].CROPID , (err , res2) => {
                             cnt++;
                             //console.log(res2[0]);
                             data.push(res2[0]);
-                            if(cnt === res1.length) result(null , data);
+                            if(cnt === res1.length) 
+                                result(null , data);
                         })
                     }
                     // console.log(data);
@@ -128,4 +159,7 @@ bids.status = function(data , result) {
         }
     })
 }
+
+
+
 module.exports = bids;

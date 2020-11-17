@@ -9,22 +9,25 @@ exports.create = function(req , res) {
         if(err) res.send(err);
         else 
         {
-            console.log(user);
+            //console.log(user);
             res.json(user);
         }
     })
 }
 exports.gettoken = function(req , res){
+       // console.log(req.body);
         user.login(req.body.email , req.body.password , (err , user) => {
-        //console.log(user);
+
         if(err) res.send(null);
         else
         {
-            if(user.length === 1)
+            if(user.length == 1)
             {
-                const payload = {id : user[0].EMAIL};
-                //console.log(payload);
+                //console.log(user);
+                const payload = {id : user[0].email+','+user[0].ID};
+                console.log(payload);
                 const token = jwt.sign(payload , process.env.JWT_KEY);
+                
                 res.send(token);
             }
             else res.send(null);
@@ -32,7 +35,7 @@ exports.gettoken = function(req , res){
     })
 }
 
-exports.getuser = function(req , res){
+exports.getuser = function(req,res){
     
     if (req.headers && req.headers.authorization) {
         
@@ -44,13 +47,22 @@ exports.getuser = function(req , res){
         } catch (e) {
             return res.status(401).send('unauthorized');
         }
-        //console.log(decoded.iat);
+        console.log(decoded);
         res.send(decoded.id);
     }
 }
+
 exports.gDetails = function(req , res) {
     //console.log(req.body);
     user.gdetails(req.body.email , (err , result) => {
+        if(err) res.send(err);
+        else res.json(result);
+    })
+}
+
+exports.verify = function(req , res) {
+    //console.log(req.body);
+    user.verify(req, (err , result) => {
         if(err) res.send(err);
         else res.json(result);
     })

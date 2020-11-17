@@ -24,13 +24,12 @@ class Login extends React.Component {
         
         event.preventDefault(); 
         // this.props.changeState(this.state.username , this.state.email , this.state.password);
-        const email = this.state.email;
-
+        
         if(this.state.email.length === 0 || this.state.password.length === 0) {
             //alert('Feild Can \'t be Empty ');
             toast.error("Fields can't be empty", {
                 position: "bottom-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -52,7 +51,7 @@ class Login extends React.Component {
                 } else {
                     toast.error("Wrong Credentials", {
                         position: "bottom-center",
-                        autoClose: 5000,
+                        autoClose: 3000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -78,7 +77,7 @@ class Login extends React.Component {
                 //NotificationManager.error("");   
                 toast.error("Email/Username already there", {
                     position: "bottom-center",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -90,7 +89,7 @@ class Login extends React.Component {
                 //NotificationManager.info("Successful Signup.Now Login"); 
                 toast.success('Successful Signup.Now Login', {
                     position: "bottom-center",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -104,7 +103,7 @@ class Login extends React.Component {
             //console.log("Error:",err);
             toast.error("Unexpected Error occured.Please Try Again", {
                 position: "bottom-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,

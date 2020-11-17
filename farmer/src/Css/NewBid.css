@@ -1,14 +1,20 @@
 
+h4 {
+    border: 1px solid blue;
+    margin: 30px;
+}
 .myForm {
     border : 2px solid black;
     margin: 30px;
     padding: 10px;
     border-radius: 20px;
     background-color: white;
+    
 }
 .Form {
     border: 1px solid red;
     padding: 20px;
+    
 }
 label {
     color: black;
@@ -17,4 +23,13 @@ label {
 }
 input {
     border: 1px solid black;
+}
+select{
+    border: 1px solid black;
+}
+
+.Form ::placeholder{
+    font-weight: 100;
+    opacity: 0.5;
+    font-size: 15px;
 }
