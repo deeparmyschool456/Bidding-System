@@ -5,7 +5,7 @@ import { ImLocation } from 'react-icons/im';
 import { BsStar } from 'react-icons/bs';
 import Avatar from '../Image/12055105.jpg';
 import axios from 'axios';
-import {BrowserRouter , Route , Link , Switch} from 'react-router-dom'
+import {BrowserRouter , Route , Link} from 'react-router-dom'
 import UEmail from './profile-component/UEmail';
 import PHome from './profile-component/PHome';
 import UPass from './profile-component/UPass';
@@ -26,25 +26,25 @@ class Profile extends React.Component {
             console.log(err);
         })
     }
-    handleClick=(e)=>{
-        if(e.target.closest("a").getAttribute('value')==1)
+    handleClick = (e) => {
+        if(e.target.closest("a").getAttribute('value') === 1)
         {
-            window.location.href="/profile";
+            window.location.href = "/profile";
         }
-        else if(e.target.closest("a").getAttribute('value')==2)
+        else if(e.target.closest("a").getAttribute('value') === 2)
         {
-            window.location.href="/profile/password";
+            window.location.href = "/profile/password";
         }
-        else if(e.target.closest("a").getAttribute('value')==3)
+        else if(e.target.closest("a").getAttribute('value') === 3)
         {
-            window.location.href="/profile/email";
+            window.location.href = "/profile/email";
         }
     }
     render() {
         return(
             <>
                 <div className = "Body">
-                    <div className = "Body-Card" style={{height:"97%"}}>
+                    <div className = "Body-Card" style = {{height:"97%"}}>
                         <nav className = "Navbar navbar navbar-expand-lg navbar-light bg-light">
                             <DiYii className = "Icon" onClick = {() => this.setState({wobble : 1})} onAnimationEnd = {() => this.setState({wobble : 0})} wobble = {this.state.wobble}/>
                             <a className = "navbar-brand" href = "#">AgroMart</a>

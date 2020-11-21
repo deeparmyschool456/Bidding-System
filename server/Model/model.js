@@ -44,6 +44,7 @@ user.create = function(new_user , result) {
 }
 user.login = function(email , password , result) {
     myConnection.query("SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?" , [email , password] , (err , res) => {
+        console.log(err);
         if(err) result(err , null);
         else result(null , res);  
     })

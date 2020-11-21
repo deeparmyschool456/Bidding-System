@@ -71,6 +71,7 @@
     cursor: pointer;
 }
 .box{
+    margin-top: 20px;
     transition: 0.5s;
     text-decoration: none;
 }
@@ -142,10 +143,14 @@
     justify-content: center;
 }
 .conc:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     border-bottom: 1px solid green;
 }
 h5 {
     margin-top: 15px;
     justify-self: center;
+}
+Link {
+    margin-top: 30px;
+    text-decoration: none;
 }

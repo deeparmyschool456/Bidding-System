@@ -1,0 +1,17 @@
+.MainCard {
+    transition: 0.8s ease-in-out;
+    background-color: #f7f7f7;
+    border-radius: 25px 25px 25px 0px;
+}
+.cardimage {
+    padding: 5px;
+    border-radius: 25px 25px 0px 0px;
+}
+.cropdetails {
+    flex : 2;
+    /* border:1px solid black; */
+}
+.MainCard:hover{
+    transform: scale(1.05);
+    box-shadow: 0 9px 6px -6px black;
+}

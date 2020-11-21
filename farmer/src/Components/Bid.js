@@ -78,7 +78,7 @@ class Bid extends React.Component {
         console.log(this.state);
         return(
             <>
-                <div className = "MainBody1 form-group">
+                {/* <div className = "MainBody1 form-group">
                    <ul>
                         <li>Crop : {crop}</li>
                         <li>From : {city}</li>
@@ -90,6 +90,32 @@ class Bid extends React.Component {
                         </div>
                         <button onClick = {this.handleSubmit}>Place</button>
                    </ul>
+                </div> */}
+                <div className = "main-body">
+                    <div className = "content-div">
+                        <h2 style = {{textAlign : "center" , marginTop : "20px" , fontFamily : "cursive"}}>Place Your Bid!</h2>
+                        <div className = "c-div">
+                            <label>Crop :</label>
+                            <label style = {{flex : "2"}}>{crop}</label>
+                        </div>
+                        <div className = "c-div">
+                            <label>From :</label>
+                            <label style = {{flex : "2"}}>{city}</label>
+                        </div>
+                        <div className = "c-div">
+                            <label>Base Price :</label>
+                            <label style = {{flex : "2"}}>{baseprice}</label>
+                        </div>
+                        <div className = "c-div">
+                            <label>Current Bid :</label>
+                            <label style = {{flex : "2"}}>{curBid}</label>
+                        </div>
+                        <div className = "c-div">
+                            <label>Place Bid :</label>
+                            <input type = "number" name = "bidPlaced" onChange = {this.handleChange} style = {{flex : "2"}}/>
+                        </div>
+                        <button onClick = {this.handleSubmit} className = "submit">Place</button>
+                    </div>
                 </div>
             </>
         )

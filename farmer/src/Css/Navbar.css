@@ -41,7 +41,8 @@
 .Main {
     margin-left: auto;
     justify-content: space-between;
-    margin-top: -87px;
+    justify-self: center;
+    margin-top: -1%;
 }
 
 .MainIcons {
@@ -56,7 +57,7 @@
     cursor: pointer;
 }
 .MainIcons:hover{
-    color:  #FF4B2B;
+    /* color:  #FF4B2B; */
 }
 
 .MainBody {
@@ -64,40 +65,45 @@
     flex-direction: row;
     
 }
+.Avatar {
+    width: 90%;
+    margin: 15px;
+    border-radius: 20px;
+}
 .leftMenu {
-    flex-basis: 1;
+    flex: 1;
     float : left;
-    width: 17%;
-    overflow-y : hidden;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 30px;
-    margin-top: 5px;  
-    margin-left: 10px; 
-    opacity: 90%;
-    color: black !important; 
+    margin-left: 20px;
+    background-color : rgb(210, 221, 60);
+    border-radius: 20px;
+    height: fit-content;
+    padding-left: 10px;
 }
 .leftMenu ul li {
-    padding : 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    list-style-type: none;
-    width: inherit;
-    border: 1px ;
-    margin-right: 20px;
-    border-radius: 25px;
-    /*background-color: rgb(185, 179, 187);*/
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 30px;
+    margin-top: 20px;
+    background-color: #f7f7f7;
+    transition: 0.5s;
+    width: 90%;
+    text-align: center;
+    text-decoration: none;
 }
 .leftMenu ul li a {
-    font-size: 20px;
-    color: black !important;
+    color: black;
+    text-emphasis: none;
 }
-.leftMenu ul li :hover {
-    margin-left: 20px;
+.leftMenu ul li:hover {
+    /* margin-left: 20px;
     /*color:#eb5b34;*/
-    transition: .3s ease-out;
-    white-space: nowrap;
-    overflow-x: hidden;
+    /* transition: .3s ease-out; */
+    /* white-space: nowrap;
+    overflow-x: hidden;*/
     text-decoration: none;
+    transform: scale(1.1);
+    border-left: 5px solid green;
 }
 .post {
     border: 1px solid black;
@@ -109,8 +115,8 @@
     color: black;
 }
 .MainMenu {
+    flex: 4;
     margin-left: 50px;
-    width: 80%;
     justify-self: inherit;
     border-radius: 30px;
     margin: 5px;
@@ -119,8 +125,26 @@
     grid-auto-columns: auto;
     grid-gap: 10px;
     background-color:white;
+    margin-right: 20px;
 }
 
 ::placeholder{
 color: #000000;    
 }
+.Icon[wobble = '1'] {
+    animation: wobble 1s 1;
+}
+@keyframes wobble {
+    25% {
+      transform: rotate(15deg);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+    75% {
+      transform: rotate(5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
