@@ -1,10 +1,10 @@
 .Body {
     /* border: 1px solid black; */
     margin: 10px;
-    background-image: url('../Image/blueWallpaper.png');
+    background-color: cornflowerblue;
 }
 .Body-Card {
-    background-color: bisque;
+    background-color: #2ba0ff;
     width: 90%;
     height: 90%;
     padding: 20px;

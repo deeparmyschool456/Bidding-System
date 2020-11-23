@@ -1,13 +1,12 @@
 import React from 'react';
 import { DiYii } from 'react-icons/di';
 import { AiFillHome } from 'react-icons/ai';
-import { IoMdContacts } from 'react-icons/io';
-import { GiCaptainHatProfile } from 'react-icons/gi';
+import { CgProfile } from 'react-icons/cg';
+import { FiLogOut } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import '../Css/Navbar.css';
 
 class NavBar extends React.Component {
-
     state = {
         wobble : 0 , 
         username : ''
@@ -24,7 +23,9 @@ class NavBar extends React.Component {
                         <button className = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarTogglerDemo02" aria-controls = "navbarTogglerDemo02" aria-expanded = "false" aria-label = "Toggle navigation">
                             <span className = "navbar-toggler-icon"></span>
                         </button>
+                        
                         <div className = "collapse navbar-collapse" id = "navbarTogglerDemo02">
+                            {/*
                             <ul className = "navbar-nav mr-auto mt-2 mt-lg-0">
                                 <li className = "nav-item">
                                     <a className = "nav-link" href = "#">Home</a>
@@ -32,14 +33,15 @@ class NavBar extends React.Component {
                                 <li className = "nav-item">
                                     <a className = "nav-link" href = "#">Contact Us</a>
                                 </li>
-                            </ul>
-                            <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
-                                <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
-                                <Link to = {'/profile'}><IoMdContacts className = "MainIcons" title = "Your Profile" /></Link>
-                                <GiCaptainHatProfile className = "MainIcons" title = "Logout" onClick = {this.props.logout}/>
-                            </div>
-                        </div>
-                    </nav>
+                            </ul>*/}
+                
+                    <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
+                        <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
+                        <Link to = {'/profile'}><CgProfile className = "MainIcons" title = "Your Profile" /></Link>
+                        <FiLogOut className = "MainIcons" title = "Logout" onClick = {this.props.logout}/>
+                    </div>
+                </div>
+                </nav>
                 </div>
             </div>
         )

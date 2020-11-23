@@ -44,7 +44,6 @@ user.create = function(new_user , result) {
 }
 user.login = function(email , password , result) {
     myConnection.query("SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?" , [email , password] , (err , res) => {
-        console.log(err);
         if(err) result(err , null);
         else result(null , res);  
     })
@@ -65,4 +64,51 @@ user.verify = function(req,result) {
     })
 }
 
+user.updateEmail = function(req,result){
+    console.log(req.body);
+
+    myConnection.query('Update users set email = ?,isverified=0 where email = ?',[req.body.update,req.body.email],(err,res)=>{
+        if(err)
+        {
+            console.log(err);
+            result(err,null);
+        }
+        else
+        {
+            myConnection.query("SELECT * from users where email=?",req.body.update,(err,res2)=>{
+
+                var url = "http://localhost:8000/post/verify?id=" + res2[0].ID;
+                mailOptions = {
+                    to : res2[0].email ,
+                    from : "Kunal From Agromart <kunnns815@gmail.com>",
+                    subject : "Please Verify Your Email Address" ,
+                    html : "Hello "+res2[0].username+",<br>Thank You for registering with us.Please Click on the link to verify your email.<br><a href = " + url + " >Click here to verify</a>"
+                }
+                //console.log(mailOptions);
+                smtpTransport.sendMail(mailOptions , (err , res) => {
+                    if(err) console.log(err);
+                    else {
+                        console.log("Message sent :" + res);
+                        
+                    }    
+                })
+                result(null,'success');
+                
+            })   
+        } 
+    })
+}
+
+user.updatePassword = function(req,result){
+    console.log(req.body);
+
+    myConnection.query('Update users set password = ? where email = ?',[req.body.password,req.body.email],(err,res)=>{
+        if(err)
+            result(err,null);
+        else
+        {
+            result(null,'success');
+        } 
+    })
+}
 module.exports = user;
