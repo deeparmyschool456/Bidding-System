@@ -24,7 +24,7 @@ const footer = () => {
     <div className="contentab">
                       <div className="place">
                         <span className="fas fa-map-marker-alt"></span>
-                        <span className="text">Office 007,Pune,India</span>
+                        <span className="text">007,Tech Park,Pune,India</span>
                       </div>
                       <div className="phone">
                         <span className="fas fa-phone-alt"></span>
@@ -58,13 +58,14 @@ const footer = () => {
       <a className="generic-anchor" target="_blank" title="Instagram"><i className="fa fa-instagram"></i></a>
       <a className="generic-anchor" target="_blank" title="Youtube"><i className="fa fa-youtube"></i></a>
       <a className="generic-anchor" target="_blank" title="Google Plus"><i className="fa fa-google-plus"></i></a>
+      <a className="generic-anchor" target="_blank" href="https://github.com/KUNAL-FALCON/Bidding-System" title="Github"><i className="fa fa-github"></i></a>
       </span>
   </section>
   <section className="footer-bottom-section flex-rw">
 <div className="footer-bottom-wrapper">   
 <i className="fa fa-copyright" role="copyright">
  
-</i> 2020 Pavilion in <address className="footer-address" role="company address">AgroMart, PUNE</address><span className="footer-bottom-rights"> - All Rights Reserved - </span>
+</i> 2020 Pavilion in <address className="footer-address" role="company address">AgroMart, Pune</address><span className="footer-bottom-rights"> - All Rights Reserved - </span>
     </div>
     <div className="footer-bottom-wrapper">
     <a className="generic-anchor" rel="nofollow">Terms</a> | <a className="generic-anchor" rel="nofollow">Privacy</a>

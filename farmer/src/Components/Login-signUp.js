@@ -47,7 +47,7 @@ class Login extends React.Component {
                 if(res.data) {
                     localStorage.setItem('cool-jwt' , res.data);
                     this.props.changeState(this.state.username , this.state.email , this.state.password);
-                    this.props.history.push('/');
+                    window.location.replace("/");
                 } else {
                     toast.error("Wrong Credentials", {
                         position: "bottom-center",

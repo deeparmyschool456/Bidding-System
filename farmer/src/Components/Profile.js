@@ -5,9 +5,12 @@ import { ImLocation } from 'react-icons/im';
 import { BsStar } from 'react-icons/bs';
 import Avatar from '../Image/12055105.jpg';
 import axios from 'axios';
-import {BrowserRouter , Route , Link} from 'react-router-dom'
+import {BrowserRouter , Route , Link , Switch} from 'react-router-dom'
 import UEmail from './profile-component/UEmail';
 import PHome from './profile-component/PHome';
+import { AiFillHome } from 'react-icons/ai';
+import { CgProfile } from 'react-icons/cg';
+import { FiLogOut } from 'react-icons/fi';
 import UPass from './profile-component/UPass';
 
 class Profile extends React.Component {
@@ -26,25 +29,25 @@ class Profile extends React.Component {
             console.log(err);
         })
     }
-    handleClick = (e) => {
-        if(e.target.closest("a").getAttribute('value') === 1)
+    handleClick=(e)=>{
+        if(e.target.closest("a").getAttribute('value')==1)
         {
-            window.location.href = "/profile";
+            window.location.href="/profile";
         }
-        else if(e.target.closest("a").getAttribute('value') === 2)
+        else if(e.target.closest("a").getAttribute('value')==2)
         {
-            window.location.href = "/profile/password";
+            window.location.href="/profile/password";
         }
-        else if(e.target.closest("a").getAttribute('value') === 3)
+        else if(e.target.closest("a").getAttribute('value')==3)
         {
-            window.location.href = "/profile/email";
+            window.location.href="/profile/email";
         }
     }
     render() {
         return(
             <>
                 <div className = "Body">
-                    <div className = "Body-Card" style = {{height:"97%"}}>
+                    <div className = "Body-Card" style={{height:"97%"}}>
                         <nav className = "Navbar navbar navbar-expand-lg navbar-light bg-light">
                             <DiYii className = "Icon" onClick = {() => this.setState({wobble : 1})} onAnimationEnd = {() => this.setState({wobble : 0})} wobble = {this.state.wobble}/>
                             <a className = "navbar-brand" href = "#">AgroMart</a>
@@ -52,6 +55,7 @@ class Profile extends React.Component {
                                 <span className = "navbar-toggler-icon"></span>
                             </button>
                             <div className = "collapse navbar-collapse" id = "navbarTogglerDemo02">
+                                {/*
                                 <ul className = "navbar-nav mr-auto mt-2 mt-lg-0">
                                     <li className = "nav-item">
                                         <a className = "nav-link" href = "#">Home</a>
@@ -60,11 +64,16 @@ class Profile extends React.Component {
                                         <a className = "nav-link" href = "#">Contact Us</a>
                                     </li>
                                 </ul>
-                                {/*
+                                
                                 <form className = "form-inline my-2 my-lg-0">
                                     <input className = "form-control mr-sm-2" type = "search" placeholder = "Search" style = {{width : "250px"}}/>
                                     <button className = "btn btn-outline-success my-2 my-sm-0" type = "submit">Search</button>
                                 </form>*/}
+                                <div className = "Main" style = {{cursor : "pointer", color : "black"}}>
+                        <a href="/"><AiFillHome className = "MainIcons" title = "Home"/></a>
+                        <Link to = {'/profile'}><CgProfile className = "MainIcons" title = "Your Profile" /></Link>
+                        <FiLogOut className = "MainIcons" title = "Logout" onClick = {this.props.logout}/>
+                    </div>
                             </div>
                         </nav>
                         <div className = "content">
@@ -109,8 +118,8 @@ class Profile extends React.Component {
                                 <div className = "child212">
                                     <BrowserRouter>
                                         <Route exact path = '/profile' component = {PHome} />
-                                        <Route exact path = "/profile/email" render = {(props) => <UEmail {...props} email = {this.props.email}/>}/>
-                                        <Route exact path = "/profile/password" component = {UPass}/>
+                                        <Route exact path = "/profile/email" render = {(props) => <UEmail {...props} email = {this.props.email} logout={this.props.logout}/>}/>
+                                        <Route exact path = "/profile/password" render = {(props) => <UPass {...props} email = {this.props.email} logout={this.props.logout}/>}/>
                                     </BrowserRouter>
                                 </div>
                             </div>

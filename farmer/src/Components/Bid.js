@@ -56,7 +56,7 @@ class Bid extends React.Component {
         else {
             const url = 'http://localhost:8000/post/placebid';
             const data = {bidplaced : this.state.bidPlaced , email : this.props.email , id : this.props.match.params.bid_id};
-
+            console.log(data);
             axios.post(url , data).then(res => {
                 this.props.history.push('/');
             }).catch(e =>{
@@ -75,22 +75,9 @@ class Bid extends React.Component {
     render()
     {
         const {curBid , city  , crop , baseprice} = this.state;
-        console.log(this.state);
+        //console.log(this.state);
         return(
             <>
-                {/* <div className = "MainBody1 form-group">
-                   <ul>
-                        <li>Crop : {crop}</li>
-                        <li>From : {city}</li>
-                        <li>Base Price : {baseprice}</li>
-                        <li>Current Bid : {curBid} </li>
-                        <div className = "bids">
-                            <label> Place Bid</label>
-                            <input type = "number" name = "bidPlaced" onChange = {this.handleChange}/>
-                        </div>
-                        <button onClick = {this.handleSubmit}>Place</button>
-                   </ul>
-                </div> */}
                 <div className = "main-body">
                     <div className = "content-div">
                         <h2 style = {{textAlign : "center" , marginTop : "20px" , fontFamily : "cursive"}}>Place Your Bid!</h2>

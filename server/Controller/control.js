@@ -67,3 +67,21 @@ exports.verify = function(req , res) {
         else res.json(result);
     })
 }
+
+exports.updateEmail = function(req , res) {
+    //console.log(req.body);
+    user.updateEmail(req, (err , result) => {
+        if(err) 
+            res.send(err);
+        else 
+            res.json(result);
+    })
+}
+
+exports.updatePassword = function(req , res) {
+    //console.log(req.body);
+    user.updatePassword(req, (err , result) => {
+        if(err) res.send(err);
+        else res.json(result);
+    })
+}

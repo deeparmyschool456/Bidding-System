@@ -51,7 +51,7 @@ const Home = ()=> {
                 </div>
                 <div class="rightside">
                     <h1>THE FARMER PLACE</h1>
-                    <p>Following our motto "JAI JAWAN JAI KISAN"</p>
+                    <p>"JAI JAWAN JAI KISAN"</p>
                     <Link to = {'/login'}><button style = {{border : "none"}}>GET START</button></Link>
                 </div>
             </section>
@@ -61,4 +61,3 @@ const Home = ()=> {
 };
 
 export default Home;
-

@@ -21,7 +21,6 @@ class NewBid extends React.Component {
         this.setState({
             [e.target.name] : e.target.value
         });
-        console.log(this.state);
     }
     /*
     componentDidMount() {
@@ -105,18 +104,18 @@ class NewBid extends React.Component {
                             <img src = {Namaste} width = "100%" height = "100%" className = "Namaste"/>
                         </div>
                         <div style = {{flex : "1" , flexDirection : "column"}}>
-                            <h4 style = {{textAlign : "center"}} className = "namo">Welcome to Agromart!</h4>
-                            <div className = "go-home">Go Home</div>
+                            <h4 style = {{textAlign : "center"}} className = "namo">To Those That Work in Acres,Not in Hours<br></br> <p style={{fontSize:"20px"}}>"We Thank You"</p></h4>
+                            
                         </div>
                     </div>
                     <div className = "right-div">
-                        <h4 style = {{flex : "0.5" , textAlign : "center" , border : "none" , marginTop : "20px"}}>Place Your Bid Here!</h4>
+                        <h4 style = {{flex : "0.5" , textAlign : "center" , border : "none" , marginTop : "20px"}}>Upload Your Crop !</h4>
                         <div className = "right-div-content ">
                             <label style = {{flex : "2" , marginTop : "20px"}}>Crop Name : </label>
                             <input  type = "text" placeholder = "Crop Name" name = "crop" onChange = {this.handleChange} autoComplete = "off" style = {{flex  : "3"}}/>
                         </div>
                         <div className = "right-div-content ">
-                            <label style = {{flex : "2" , marginTop : "20px"}}>Crop's Quantity(kg) :</label>
+                            <label style = {{flex : "2" , marginTop : "20px"}}>Crop's Quantity (kg) :</label>
                             <input  type = "number" placeholder = "Crop's Quantity" name = "weight" min="0" onChange = {this.handleChange} autoComplete = "off" style = {{flex : "3"}}/>
                         </div>
                         <div className = "right-div-content ">

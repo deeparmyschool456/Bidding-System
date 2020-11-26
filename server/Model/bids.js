@@ -83,8 +83,14 @@ bids.placeMyBid = function(pBid , result) {
 
     myConnection.query("SELECT bidtime from bids where Crop_ID= ?",pBid.id,(err,res1)=>{
     var today=new Date();
-    var lastday=today.getDate() - (today.getDay() - 1) + res1[0].bidtime+1;
-    lastday=new Date(today.setDate(lastday));
+    console.log("today:",today);
+    console.log(res1[0].bidtime);
+    
+    var lastday=new Date(today);
+    
+    lastday.setDate(lastday.getDate() + res1[0].bidtime);
+    
+    console.log("Date:",lastday);
 
     var dd = String(lastday.getDate()).padStart(2, '0');
     var mm = String(lastday.getMonth() + 1).padStart(2, '0'); //January is 0!

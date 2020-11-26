@@ -15,5 +15,8 @@ Router.post('/closebid' , bid_controller.closeBid);
 Router.post('/yourstatus' , bid_controller.status);
 Router.post('/gDetails' , user_controller.gDetails);
 Router.get('/verify',user_controller.verify);
+Router.post('/uemail' , user_controller.updateEmail);
+Router.post('/upassword' , user_controller.updatePassword);
+
 
 module.exports = Router;
